@@ -1,6 +1,6 @@
 # ir-api
 
-A lean, functional Javascript client for the Independent Reserve API. Works both in Node and Browser.
+A lean, functional Javascript client for the Independent Reserve API.
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/davesag/ir-api.svg)](https://greenkeeper.io/)
 
@@ -10,15 +10,11 @@ A lean, functional Javascript client for the Independent Reserve API. Works both
 | `develop` | [![CircleCI](https://circleci.com/gh/davesag/ir-api/tree/develop.svg?style=svg)](https://circleci.com/gh/davesag/ir-api/tree/develop) | [![codecov](https://codecov.io/gh/davesag/ir-api/branch/develop/graph/badge.svg)](https://codecov.io/gh/davesag/ir-api) | Work in progress |
 | `master` | [![CircleCI](https://circleci.com/gh/davesag/ir-api/tree/master.svg?style=svg)](https://circleci.com/gh/davesag/ir-api/tree/master) | [![codecov](https://codecov.io/gh/davesag/ir-api/branch/master/graph/badge.svg)](https://codecov.io/gh/davesag/ir-api) | Latest stable release |
 
-## Status
-
-Under Development — Not ready for use.
-
 [![NPM](https://nodei.co/npm/ir-api.png)](https://nodei.co/npm/ir-api/)
 
 ## Usage
 
-`ir-api` requires `axios` as a peer dependency.
+`ir-api` has no dependencies of its own but requires `axios` as a peer dependency.
 
 ```sh
 npm install axios ir-api
@@ -45,7 +41,7 @@ getValidPrimaryCurrencyCodes().then(codes => {
 ```js
 const ir = require('ir-api')
 
-const { getOpenOrders } = ir('my-api-key')
+const { getOpenOrders } = ir('my-api-key', 'my-api-secret')
 
 getOpenOrders().then(data => {
   console.log('data', data)
@@ -76,14 +72,18 @@ getOpenOrders({
 
 All methods return a resolved promise so you can safely use `async` / `await`
 
+### example
+
+See [this gist](https://gist.github.com/davesag/3567876481344419827e514bae78a02b) for an example of using the API to retrieve your IR balance, then get the market rates for each of your coins, convert to Australian Dollars and display a simple ASCII table with the results and a total.
+
 ### Errors
 
 If an API call returns an error we return it as
 
 ```js
 {
-  code, // an error code or numeric status
-    message // some helpful message
+  code: 'some code', // an error code or numeric status
+  message: 'some message' // some helpful message
 }
 ```
 
