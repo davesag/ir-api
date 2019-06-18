@@ -31,10 +31,8 @@ describe('api/private/getTrades', () => {
     post.resetHistory()
   }
 
-  let result
-
   before(async () => {
-    result = await method(apiKey, apiSecret)()
+    await method(apiKey, apiSecret)()
   })
 
   after(resetHistory)

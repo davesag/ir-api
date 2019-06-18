@@ -1,7 +1,6 @@
 const { expect } = require('chai')
 const { match, stub } = require('sinon')
 const proxyquire = require('proxyquire')
-const { defaultParams } = require('../../../../src/defaults')
 
 describe('api/private/synchDigitalCurrencyDepositAddressWithBlockchain', () => {
   const expected = 'some data'
