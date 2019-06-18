@@ -1,4 +1,5 @@
 const PUBLIC = {
+  getFxRates: require('./api/getFxRates'),
   getValidLimitOrderTypes: require('./api/getValidLimitOrderTypes'),
   getValidMarketOrderTypes: require('./api/getValidMarketOrderTypes'),
   getValidOrderTypes: require('./api/getValidOrderTypes'),
