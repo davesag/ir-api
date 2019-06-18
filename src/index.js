@@ -3,7 +3,8 @@ const PUBLIC = {
   getValidMarketOrderTypes: require('./api/getValidMarketOrderTypes'),
   getValidOrderTypes: require('./api/getValidOrderTypes'),
   getValidPrimaryCurrencyCodes: require('./api/getValidPrimaryCurrencyCodes'),
-  getValidSecondaryCurrencyCodes: require('./api/getValidSecondaryCurrencyCodes')
+  getValidSecondaryCurrencyCodes: require('./api/getValidSecondaryCurrencyCodes'),
+  getValidTransactionTypes: require('./api/getValidTransactionTypes')
 }
 
 const PRIVATE = {

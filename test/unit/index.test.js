@@ -24,7 +24,8 @@ describe('src/index', () => {
         'getValidMarketOrderTypes',
         'getValidOrderTypes',
         'getValidPrimaryCurrencyCodes',
-        'getValidSecondaryCurrencyCodes'
+        'getValidSecondaryCurrencyCodes',
+        'getValidTransactionTypes'
       ].forEach(method => {
         expect(api).to.have.property(method)
       })
