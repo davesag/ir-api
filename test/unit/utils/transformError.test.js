@@ -3,25 +3,44 @@ const { expect } = require('chai')
 const transformError = require('../../../src/utils/transformError')
 
 describe('utils/transformError', () => {
-  const error = {
-    response: {
-      status: 404,
-      data: 'some message'
+  context('if the error has no details', () => {
+    const error = {}
+
+    const expected = {
+      code: 400,
+      message: 'No error message received'
     }
-  }
 
-  const expected = {
-    status: error.response.status,
-    message: error.response.data
-  }
+    let result
 
-  let result
+    before(() => {
+      result = transformError(error)
+    })
 
-  before(() => {
-    result = transformError(error)
+    it('returned the expected data', () => {
+      expect(result).to.deep.equal(expected)
+    })
   })
 
-  it('returned the expected data', () => {
-    expect(result).to.deep.equal(expected)
+  context('if the error has details', () => {
+    const error = {
+      code: 400,
+      message: 'oops'
+    }
+
+    const expected = {
+      code: error.code,
+      message: error.message
+    }
+
+    let result
+
+    before(() => {
+      result = transformError(error)
+    })
+
+    it('returned the expected data', () => {
+      expect(result).to.deep.equal(expected)
+    })
   })
 })

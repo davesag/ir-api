@@ -82,8 +82,8 @@ If an API call returns an error we return it as
 
 ```js
 {
-  status: 'the error status',
-  message: 'some helpful message'
+  code, // an error code or numeric status
+    message // some helpful message
 }
 ```
 

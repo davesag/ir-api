@@ -3,8 +3,6 @@ const { transportOptions: defaults, defaultHeaders } = require('../defaults')
 const transformResponse = require('./transformResponse')
 const transformError = require('./transformError')
 
-axios.interceptors.response.use(transformResponse, transformError)
-
 let transport
 
 const makeTransport = ({ headers: heads, ...options }) => {
@@ -21,6 +19,7 @@ const makeTransport = ({ headers: heads, ...options }) => {
     headers
   })
 
+  transport.interceptors.response.use(transformResponse, transformError)
   // any other config
 }
 
