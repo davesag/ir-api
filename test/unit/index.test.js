@@ -21,6 +21,7 @@ describe('src/index', () => {
     it('returned the public methods', () => {
       ;[
         'getFxRates',
+        'getMarketSummary',
         'getValidLimitOrderTypes',
         'getValidMarketOrderTypes',
         'getValidOrderTypes',
