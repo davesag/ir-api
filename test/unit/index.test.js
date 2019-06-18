@@ -19,7 +19,20 @@ describe('src/index', () => {
     })
 
     it('returned the public methods', () => {
-      ;['getValidPrimaryCurrencyCodes'].forEach(method => {
+      ;[
+        'getAllOrders',
+        'getFxRates',
+        'getMarketSummary',
+        'getOrderBook',
+        'getRecentTrades',
+        'getTradeHistorySummary',
+        'getValidLimitOrderTypes',
+        'getValidMarketOrderTypes',
+        'getValidOrderTypes',
+        'getValidPrimaryCurrencyCodes',
+        'getValidSecondaryCurrencyCodes',
+        'getValidTransactionTypes'
+      ].forEach(method => {
         expect(api).to.have.property(method)
       })
     })

@@ -1,23 +1,33 @@
-const getValidPrimaryCurrencyCodes = require('./api/getValidPrimaryCurrencyCodes')
-const getOpenOrders = require('./api/getOpenOrders')
-
-const publicMethods = {
-  getValidPrimaryCurrencyCodes
+const PUBLIC = {
+  getAllOrders: require('./api/getAllOrders'),
+  getFxRates: require('./api/getFxRates'),
+  getMarketSummary: require('./api/getMarketSummary'),
+  getOrderBook: require('./api/getOrderBook'),
+  getRecentTrades: require('./api/getRecentTrades'),
+  getTradeHistorySummary: require('./api/getTradeHistorySummary'),
+  getValidLimitOrderTypes: require('./api/getValidLimitOrderTypes'),
+  getValidMarketOrderTypes: require('./api/getValidMarketOrderTypes'),
+  getValidOrderTypes: require('./api/getValidOrderTypes'),
+  getValidPrimaryCurrencyCodes: require('./api/getValidPrimaryCurrencyCodes'),
+  getValidSecondaryCurrencyCodes: require('./api/getValidSecondaryCurrencyCodes'),
+  getValidTransactionTypes: require('./api/getValidTransactionTypes')
 }
 
-const privateMethods = {
-  getOpenOrders
+const PRIVATE = {
+  getOpenOrders: require('./api/getOpenOrders')
+}
+
+const attachKeys = (...keys) => (acc, elem) => {
+  acc[elem] = PRIVATE[elem](...keys)
+  return acc
 }
 
 const ir = (key, secret) =>
   key && secret
     ? {
-        ...publicMethods,
-        ...Object.keys(privateMethods).reduce((acc, elem) => {
-          acc[elem] = privateMethods[elem](key, secret)
-          return acc
-        }, {})
+        ...PUBLIC,
+        ...Object.keys(PRIVATE).reduce(attachKeys(key, secret), {})
       }
-    : publicMethods
+    : PUBLIC
 
 module.exports = ir
