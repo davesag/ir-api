@@ -22,6 +22,7 @@ describe('src/index', () => {
       ;[
         'getValidLimitOrderTypes',
         'getValidMarketOrderTypes',
+        'getValidOrderTypes',
         'getValidPrimaryCurrencyCodes',
         'getValidSecondaryCurrencyCodes'
       ].forEach(method => {

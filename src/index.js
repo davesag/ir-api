@@ -1,6 +1,7 @@
 const PUBLIC = {
   getValidLimitOrderTypes: require('./api/getValidLimitOrderTypes'),
   getValidMarketOrderTypes: require('./api/getValidMarketOrderTypes'),
+  getValidOrderTypes: require('./api/getValidOrderTypes'),
   getValidPrimaryCurrencyCodes: require('./api/getValidPrimaryCurrencyCodes'),
   getValidSecondaryCurrencyCodes: require('./api/getValidSecondaryCurrencyCodes')
 }
