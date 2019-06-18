@@ -19,7 +19,10 @@ describe('src/index', () => {
     })
 
     it('returned the public methods', () => {
-      ;['getValidPrimaryCurrencyCodes'].forEach(method => {
+      ;[
+        'getValidPrimaryCurrencyCodes',
+        'getValidSecondaryCurrencyCodes'
+      ].forEach(method => {
         expect(api).to.have.property(method)
       })
     })

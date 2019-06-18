@@ -1,25 +1,23 @@
-const getValidPrimaryCurrencyCodes = require('./api/getValidPrimaryCurrencyCodes')
-const getOpenOrders = require('./api/getOpenOrders')
-
-const publicMethods = {
-  getValidPrimaryCurrencyCodes
+const PUBLIC = {
+  getValidPrimaryCurrencyCodes: require('./api/getValidPrimaryCurrencyCodes'),
+  getValidSecondaryCurrencyCodes: require('./api/getValidSecondaryCurrencyCodes')
 }
 
-const privateMethods = {
-  getOpenOrders
+const PRIVATE = {
+  getOpenOrders: require('./api/getOpenOrders')
 }
 
 const attachKeys = (...keys) => (acc, elem) => {
-  acc[elem] = privateMethods[elem](...keys)
+  acc[elem] = PRIVATE[elem](...keys)
   return acc
 }
 
 const ir = (key, secret) =>
   key && secret
     ? {
-        ...publicMethods,
-        ...Object.keys(privateMethods).reduce(attachKeys(key, secret), {})
+        ...PUBLIC,
+        ...Object.keys(PRIVATE).reduce(attachKeys(key, secret), {})
       }
-    : publicMethods
+    : PUBLIC
 
 module.exports = ir
