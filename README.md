@@ -24,6 +24,8 @@ npm install axios ir-api
 
 The API calls follow the documentation set out at https://www.independentreserve.com/api but start with a lower case letter instead of upper case.
 
+Similarly all returned data will have keys that start with lower case instead of upper case.
+
 ### Public Methods
 
 ```js

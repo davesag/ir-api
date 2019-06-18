@@ -2,43 +2,52 @@ const { expect } = require('chai')
 const { stub } = require('sinon')
 const proxyquire = require('proxyquire')
 
-describe('src/index', () => {
-  const getOpenOrders = stub().returns('getOpenOrders')
+const privateFns = require('../../src/api/private')
 
-  const ir = proxyquire('../../src/', {
-    './api/getOpenOrders': getOpenOrders
-  })
+describe('src/index', () => {
+  const privateStubs = Object.keys(privateFns).reduce((acc, elem) => {
+    acc[elem] = stub().returns(elem)
+    return acc
+  }, {})
+  const privateMethods = Object.keys(privateStubs)
+  const publicMethods = [
+    'getAllOrders',
+    'getFxRates',
+    'getMarketSummary',
+    'getOrderBook',
+    'getRecentTrades',
+    'getTradeHistorySummary',
+    'getValidLimitOrderTypes',
+    'getValidMarketOrderTypes',
+    'getValidOrderTypes',
+    'getValidPrimaryCurrencyCodes',
+    'getValidSecondaryCurrencyCodes',
+    'getValidTransactionTypes'
+  ]
+
+  const ir = proxyquire('../../src/', { './api/private': privateStubs })
 
   const resetHistory = () => {
-    getOpenOrders.resetHistory()
+    privateMethods.forEach(method => {
+      privateStubs[method].resetHistory()
+    })
   }
 
   const testOnlyPublicMethods = () => {
-    it('did not invoke getOpenOrders', () => {
-      expect(getOpenOrders).not.to.have.been.called
+    Object.keys(privateFns).forEach(method => {
+      it(`did not invoke ${method}`, () => {
+        expect(privateStubs[method]).not.to.have.been.called
+      })
     })
 
     it('returned the public methods', () => {
-      ;[
-        'getAllOrders',
-        'getFxRates',
-        'getMarketSummary',
-        'getOrderBook',
-        'getRecentTrades',
-        'getTradeHistorySummary',
-        'getValidLimitOrderTypes',
-        'getValidMarketOrderTypes',
-        'getValidOrderTypes',
-        'getValidPrimaryCurrencyCodes',
-        'getValidSecondaryCurrencyCodes',
-        'getValidTransactionTypes'
-      ].forEach(method => {
+      publicMethods.forEach(method => {
         expect(api).to.have.property(method)
       })
     })
 
     it('did not return the private methods', () => {
-      ;['getOpenOrders'].forEach(method => {
+      Object.keys(privateFns).forEach(method => {
         expect(api).not.to.have.property(method)
       })
     })
@@ -62,12 +71,14 @@ describe('src/index', () => {
 
       after(resetHistory)
 
-      it('invoked getOpenOrders with the key and secret', () => {
-        expect(getOpenOrders).to.have.been.calledOnceWith(key, secret)
+      Object.keys(privateStubs).forEach(pstub => {
+        it(`invoked ${pstub} with the key and secret`, () => {
+          expect(privateStubs[pstub]).to.have.been.calledOnceWith(key, secret)
+        })
       })
 
       it('returned both the public and private methods', () => {
-        ;['getValidPrimaryCurrencyCodes', 'getOpenOrders'].forEach(method => {
+        ;[...publicMethods, ...privateMethods].forEach(method => {
           expect(api).to.have.property(method)
         })
       })

@@ -1,21 +1,5 @@
-const PUBLIC = {
-  getAllOrders: require('./api/getAllOrders'),
-  getFxRates: require('./api/getFxRates'),
-  getMarketSummary: require('./api/getMarketSummary'),
-  getOrderBook: require('./api/getOrderBook'),
-  getRecentTrades: require('./api/getRecentTrades'),
-  getTradeHistorySummary: require('./api/getTradeHistorySummary'),
-  getValidLimitOrderTypes: require('./api/getValidLimitOrderTypes'),
-  getValidMarketOrderTypes: require('./api/getValidMarketOrderTypes'),
-  getValidOrderTypes: require('./api/getValidOrderTypes'),
-  getValidPrimaryCurrencyCodes: require('./api/getValidPrimaryCurrencyCodes'),
-  getValidSecondaryCurrencyCodes: require('./api/getValidSecondaryCurrencyCodes'),
-  getValidTransactionTypes: require('./api/getValidTransactionTypes')
-}
-
-const PRIVATE = {
-  getOpenOrders: require('./api/getOpenOrders')
-}
+const PUBLIC = require('./api/public')
+const PRIVATE = require('./api/private')
 
 const attachKeys = (...keys) => (acc, elem) => {
   acc[elem] = PRIVATE[elem](...keys)

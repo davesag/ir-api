@@ -18,33 +18,61 @@ describe('utils/payloadBuilder', () => {
   const apiSecret = '2468whodoweappreciate'
   const path = 'Test'
 
-  const signer = createHmac('sha256', Buffer.from(apiSecret, 'utf8'))
-  const message = [
-    `${baseURL}/${path}`,
-    `apiKey=${apiKey}`,
-    `nonce=${nonce}`,
-    'test=data'
-  ].join(',')
+  context('given data', () => {
+    const message = [
+      `${baseURL}/${path}`,
+      `apiKey=${apiKey}`,
+      `nonce=${nonce}`,
+      'test=data',
+      'arry=one,two'
+    ].join(',')
 
-  const signature = signer
-    .update(message)
-    .digest('hex')
-    .toUpperCase()
+    const signature = createHmac('sha256', Buffer.from(apiSecret, 'utf8'))
+      .update(message)
+      .digest('hex')
+      .toUpperCase()
 
-  const payload = {
-    test: 'data'
-  }
+    const payload = {
+      test: 'data',
+      arry: ['one', 'two']
+    }
 
-  const expected = {
-    apiKey,
-    nonce,
-    signature,
-    ...payload
-  }
+    const expected = {
+      apiKey,
+      nonce,
+      signature,
+      ...payload
+    }
 
-  const buildPayload = payloadBuilder(apiKey, apiSecret)
+    const buildPayload = payloadBuilder(apiKey, apiSecret)
 
-  it('returns the expected result', () => {
-    expect(buildPayload(path, payload)).to.deep.equal(expected)
+    it('returns the expected result', () => {
+      expect(buildPayload(path, payload)).to.deep.equal(expected)
+    })
+  })
+
+  context('given no data', () => {
+    const message = [
+      `${baseURL}/${path}`,
+      `apiKey=${apiKey}`,
+      `nonce=${nonce}`
+    ].join(',')
+
+    const signature = createHmac('sha256', Buffer.from(apiSecret, 'utf8'))
+      .update(message)
+      .digest('hex')
+      .toUpperCase()
+
+    const expected = {
+      apiKey,
+      nonce,
+      signature
+    }
+
+    const buildPayload = payloadBuilder(apiKey, apiSecret)
+
+    it('returns the expected result', () => {
+      expect(buildPayload(path)).to.deep.equal(expected)
+    })
   })
 })

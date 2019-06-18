@@ -5,7 +5,7 @@ const {
 const nextNonce = require('./nextNonce')
 const trimEmptyKeys = require('./trimEmptyKeys')
 
-const payloadBuilder = (apiKey, apiSecret) => (path, payload) => {
+const payloadBuilder = (apiKey, apiSecret) => (path, payload = {}) => {
   const nonce = nextNonce()
   const data = trimEmptyKeys({
     apiKey,
@@ -19,7 +19,14 @@ const payloadBuilder = (apiKey, apiSecret) => (path, payload) => {
   const message = Object.keys(data)
     .reduce(
       (acc, elem) => {
-        if (elem !== 'signature') acc.push(`${elem}=${data[elem]}`)
+        if (elem !== 'signature') {
+          const value = data[elem]
+          if (Array.isArray(value)) {
+            acc.push(`${elem}=${data[elem].join(',')}`)
+          } else {
+            acc.push(`${elem}=${data[elem]}`)
+          }
+        }
         return acc
       },
       [url]
