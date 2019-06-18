@@ -1,6 +1,6 @@
 const transportOptions = {
   baseURL: 'https://api.independentreserve.com',
-  timeout: 1000
+  timeout: 2500
 }
 
 const defaultHeaders = {

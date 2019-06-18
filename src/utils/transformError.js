@@ -1,6 +1,6 @@
 const transformError = error => ({
-  status: error.response.status,
-  message: error.response.data
+  code: error.code || 400,
+  message: error.message || 'No error message received'
 })
 
 module.exports = transformError

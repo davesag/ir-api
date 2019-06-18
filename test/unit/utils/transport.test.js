@@ -33,13 +33,6 @@ describe('utils/transport', () => {
     axios.interceptors.response.use.resetHistory()
   }
 
-  it('called axios.interceptors.response.use', () => {
-    expect(axios.interceptors.response.use).to.have.been.calledOnceWith(
-      transformResponse,
-      transformError
-    )
-  })
-
   describe('#getTransport', () => {
     const reset = () => {
       close()
@@ -62,6 +55,13 @@ describe('utils/transport', () => {
             })
           )
         })
+
+        it('called axios.interceptors.response.use', () => {
+          expect(axios.interceptors.response.use).to.have.been.calledOnceWith(
+            transformResponse,
+            transformError
+          )
+        })
       })
 
       context('with options', () => {
@@ -78,6 +78,13 @@ describe('utils/transport', () => {
               ...defaults,
               headers: { ...defaultHeaders, ...headers }
             })
+          )
+        })
+
+        it('called axios.interceptors.response.use', () => {
+          expect(axios.interceptors.response.use).to.have.been.calledOnceWith(
+            transformResponse,
+            transformError
           )
         })
       })
