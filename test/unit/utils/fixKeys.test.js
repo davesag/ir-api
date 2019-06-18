@@ -3,35 +3,66 @@ const { expect } = require('chai')
 const fixKeys = require('../../../src/utils/fixKeys')
 
 describe('utils/fixKeys', () => {
-  const original = {
-    Some: 'data',
-    With: {
-      Nested: 'data'
-    },
-    And: ['an', 'array', 'of', 'strings'],
-    AsWellAs: [{ An: 'array of objects' }]
-  }
-
-  const expected = {
-    some: 'data',
-    with: {
-      nested: 'data'
-    },
-    and: ['an', 'array', 'of', 'strings'],
-    asWellAs: [{ an: 'array of objects' }]
-  }
-
   let result
+  context('when not given data', () => {
+    before(() => {
+      result = fixKeys()
+    })
 
-  before(() => {
-    result = fixKeys(original)
+    it('returns undefined', () => {
+      expect(result).to.be.undefined
+    })
   })
 
-  it('left the original untouched', () => {
-    expect(original).not.to.deep.equal(expected)
+  context('when given null', () => {
+    before(() => {
+      result = fixKeys(null)
+    })
+
+    it('returns null', () => {
+      expect(result).to.be.null
+    })
   })
 
-  it('fixed the keys', () => {
-    expect(result).to.deep.equal(expected)
+  context('when given NaN', () => {
+    before(() => {
+      result = fixKeys(NaN)
+    })
+
+    it('returns NaN', () => {
+      expect(result).to.be.NaN
+    })
+  })
+
+  context('when given data', () => {
+    const original = {
+      Some: 'data',
+      With: {
+        Nested: 'data'
+      },
+      And: ['an', 'array', 'of', 'strings'],
+      AsWellAs: [{ An: 'array of objects' }]
+    }
+
+    const expected = {
+      some: 'data',
+      with: {
+        nested: 'data'
+      },
+      and: ['an', 'array', 'of', 'strings'],
+      asWellAs: [{ an: 'array of objects' }]
+    }
+
+    before(() => {
+      result = fixKeys(original)
+    })
+
+    it('left the original untouched', () => {
+      expect(original).not.to.deep.equal(expected)
+    })
+
+    it('fixed the keys', () => {
+      expect(result).to.deep.equal(expected)
+    })
   })
 })

@@ -23,7 +23,8 @@ describe('utils/payloadBuilder', () => {
       `${baseURL}/${path}`,
       `apiKey=${apiKey}`,
       `nonce=${nonce}`,
-      'test=data'
+      'test=data',
+      'arry=one,two'
     ].join(',')
 
     const signature = createHmac('sha256', Buffer.from(apiSecret, 'utf8'))
@@ -32,7 +33,8 @@ describe('utils/payloadBuilder', () => {
       .toUpperCase()
 
     const payload = {
-      test: 'data'
+      test: 'data',
+      arry: ['one', 'two']
     }
 
     const expected = {
