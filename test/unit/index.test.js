@@ -21,6 +21,7 @@ describe('src/index', () => {
     it('returned the public methods', () => {
       ;[
         'getValidLimitOrderTypes',
+        'getValidMarketOrderTypes',
         'getValidPrimaryCurrencyCodes',
         'getValidSecondaryCurrencyCodes'
       ].forEach(method => {
