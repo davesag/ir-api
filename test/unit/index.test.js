@@ -20,6 +20,7 @@ describe('src/index', () => {
 
     it('returned the public methods', () => {
       ;[
+        'getAllOrders',
         'getFxRates',
         'getMarketSummary',
         'getOrderBook',

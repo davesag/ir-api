@@ -1,4 +1,5 @@
 const PUBLIC = {
+  getAllOrders: require('./api/getAllOrders'),
   getFxRates: require('./api/getFxRates'),
   getMarketSummary: require('./api/getMarketSummary'),
   getOrderBook: require('./api/getOrderBook'),
