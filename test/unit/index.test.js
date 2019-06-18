@@ -1,10 +1,11 @@
 const { expect } = require('chai')
-const { stub } = require('sinon')
+const { spy, stub } = require('sinon')
 const proxyquire = require('proxyquire')
 
 const privateFns = require('../../src/api/private')
 
 describe('src/index', () => {
+  const getTransport = spy()
   const privateStubs = Object.keys(privateFns).reduce((acc, elem) => {
     acc[elem] = stub().returns(elem)
     return acc
@@ -25,9 +26,13 @@ describe('src/index', () => {
     'getValidTransactionTypes'
   ]
 
-  const ir = proxyquire('../../src/', { './api/private': privateStubs })
+  const ir = proxyquire('../../src/', {
+    './api/private': privateStubs,
+    './utils/transport': { getTransport }
+  })
 
   const resetHistory = () => {
+    getTransport.resetHistory()
     privateMethods.forEach(method => {
       privateStubs[method].resetHistory()
     })
@@ -70,6 +75,10 @@ describe('src/index', () => {
       })
 
       after(resetHistory)
+
+      it('called getTransport', () => {
+        expect(getTransport).to.have.been.calledOnceWith(undefined)
+      })
 
       Object.keys(privateStubs).forEach(pstub => {
         it(`invoked ${pstub} with the key and secret`, () => {

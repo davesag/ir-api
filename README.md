@@ -61,6 +61,38 @@ getOpenOrders({
 })
 ```
 
+### Configuring `axios`
+
+Under the hood the `ir-api` uses [`axios`](https://github.com/axios/axios) as its transport layer with the following defaults:
+
+```js
+{
+  baseURL: 'https://api.independentreserve.com',
+  timeout: 2500
+  headers: {
+    'Content-Type': 'application/json',
+    'User-Agent': 'Independent Reserve Javascript API (github.com/davesag/ir-api)'
+  }
+}
+```
+
+You can change this by passing your own configuration object into the `ir` function.
+
+```js
+const ir = require('ir-api')
+
+const { getAccounts } = ir('my-api-key', 'my-api-secret', {
+  timeout: 500,
+  headers: { 'User-Agent': 'My amazing app' }
+})
+```
+
+You can supply any [configuration options that `axios` supports](https://github.com/axios/axios#axioscreateconfig), however if you change the `baseURL`, or `Content-Type` you will find the API calls stop working, so I don't advise doing that.
+
+If your app needs to run integration tests against a mock IR server (maybe you built one for this purpose) then this is where you'd override the `baseURL`.
+
+Independent Reserve's public API server can be quite slow which is why the `timeout` is set to `2500` by default. It's much faster if you use an `apiKey` and `apiSecret` however.
+
 ### Default parameters
 
 - `nonce`: computed for you
