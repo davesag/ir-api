@@ -24,6 +24,7 @@ describe('src/index', () => {
         'getFxRates',
         'getMarketSummary',
         'getOrderBook',
+        'getRecentTrades',
         'getTradeHistorySummary',
         'getValidLimitOrderTypes',
         'getValidMarketOrderTypes',

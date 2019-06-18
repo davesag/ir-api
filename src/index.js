@@ -3,6 +3,7 @@ const PUBLIC = {
   getFxRates: require('./api/getFxRates'),
   getMarketSummary: require('./api/getMarketSummary'),
   getOrderBook: require('./api/getOrderBook'),
+  getRecentTrades: require('./api/getRecentTrades'),
   getTradeHistorySummary: require('./api/getTradeHistorySummary'),
   getValidLimitOrderTypes: require('./api/getValidLimitOrderTypes'),
   getValidMarketOrderTypes: require('./api/getValidMarketOrderTypes'),
