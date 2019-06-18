@@ -8,7 +8,13 @@ const defaultHeaders = {
   'User-Agent': 'Independent Reserve Javascript API (github.com/davesag/ir-api)'
 }
 
+const defaultParams = {
+  pageIndex: 1,
+  pageSize: 25
+}
+
 module.exports = {
-  transportOptions,
-  defaultHeaders
+  defaultHeaders,
+  defaultParams,
+  transportOptions
 }

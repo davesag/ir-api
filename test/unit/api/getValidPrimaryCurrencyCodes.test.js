@@ -27,11 +27,18 @@ describe('api/getValidPrimaryCurrencyCodes', () => {
     '../utils/transport': transport
   })
 
+  const resetHistory = () => {
+    transport.getTransport.resetHistory()
+    get.resetHistory()
+  }
+
   let result
 
   before(async () => {
     result = await method()
   })
+
+  after(resetHistory)
 
   it('called getTransport', () => {
     expect(transport.getTransport).to.have.been.calledOnce

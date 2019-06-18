@@ -89,9 +89,7 @@
     "include": [
       "src/**/*.js"
     ],
-    "exclude": [
-      "src/index.js"
-    ],
+    "exclude": [],
     "reporter": [
       "lcov",
       "text"

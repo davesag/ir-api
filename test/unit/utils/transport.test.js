@@ -1,5 +1,5 @@
 const { expect } = require('chai')
-const { match, resetHistory, stub, spy } = require('sinon')
+const { match, stub, spy } = require('sinon')
 const proxyquire = require('proxyquire')
 
 const {
@@ -22,6 +22,13 @@ describe('utils/transport', () => {
   const { getTransport, close } = proxyquire('../../../src/utils/transport', {
     axios: axios
   })
+
+  const resetHistory = () => {
+    axios.create.resetHistory()
+    axios.get.resetHistory()
+    axios.post.resetHistory()
+    axios.interceptors.response.use.resetHistory()
+  }
 
   it('called axios.interceptors.response.use', () => {
     expect(axios.interceptors.response.use).to.have.been.calledOnce
