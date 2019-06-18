@@ -4,24 +4,24 @@ const proxyquire = require('proxyquire')
 
 describe('api/getTradeHistorySummary', () => {
   const expected = {
-    CreatedTimestampUtc: '2014-08-05T09:02:57.5440691Z',
-    HistorySummaryItems: [
+    createdTimestampUtc: '2014-08-05T09:02:57.5440691Z',
+    historySummaryItems: [
       {
-        AverageSecondaryCurrencyPrice: 510.0,
-        ClosingSecondaryCurrencyPrice: 510.0,
-        StartTimestampUtc: '2014-08-04T09:00:00Z',
-        EndTimestampUtc: '2014-08-04T10:00:00Z',
-        HighestSecondaryCurrencyPrice: 510.0,
-        LowestSecondaryCurrencyPrice: 510.0,
-        NumberOfTrades: 0,
-        OpeningSecondaryCurrencyPrice: 510.0,
-        PrimaryCurrencyVolume: 0.0,
-        SecondaryCurrencyVolume: 0.0
+        averageSecondaryCurrencyPrice: 510.0,
+        closingSecondaryCurrencyPrice: 510.0,
+        startTimestampUtc: '2014-08-04T09:00:00Z',
+        endTimestampUtc: '2014-08-04T10:00:00Z',
+        highestSecondaryCurrencyPrice: 510.0,
+        lowestSecondaryCurrencyPrice: 510.0,
+        numberOfTrades: 0,
+        openingSecondaryCurrencyPrice: 510.0,
+        primaryCurrencyVolume: 0.0,
+        secondaryCurrencyVolume: 0.0
       }
     ],
-    NumberOfHoursInThePastToRetrieve: 1,
-    PrimaryCurrencyCode: 'Xbt',
-    SecondaryCurrencyCode: 'Usd'
+    numberOfHoursInThePastToRetrieve: 1,
+    primaryCurrencyCode: 'Xbt',
+    secondaryCurrencyCode: 'Usd'
   }
 
   const get = stub().resolves(expected)

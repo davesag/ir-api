@@ -7,6 +7,9 @@ const {
   defaultHeaders
 } = require('../../../src/defaults')
 
+const transformResponse = require('../../../src/utils/transformResponse')
+const transformError = require('../../../src/utils/transformError')
+
 describe('utils/transport', () => {
   const axios = {
     get: stub(),
@@ -31,7 +34,10 @@ describe('utils/transport', () => {
   }
 
   it('called axios.interceptors.response.use', () => {
-    expect(axios.interceptors.response.use).to.have.been.calledOnce
+    expect(axios.interceptors.response.use).to.have.been.calledOnceWith(
+      transformResponse,
+      transformError
+    )
   })
 
   describe('#getTransport', () => {

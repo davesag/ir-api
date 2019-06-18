@@ -4,8 +4,8 @@ const proxyquire = require('proxyquire')
 
 describe('api/getFxRates', () => {
   const expected = [
-    { CurrencyCodeA: 'Aud', CurrencyCodeB: 'Usd', Rate: 0.8683 },
-    { CurrencyCodeA: 'Usd', CurrencyCodeB: 'Aud', Rate: 1.1517 }
+    { currencyCodeA: 'Aud', currencyCodeB: 'Usd', Rate: 0.8683 },
+    { currencyCodeA: 'Usd', currencyCodeB: 'Aud', Rate: 1.1517 }
   ]
 
   const get = stub().resolves(expected)

@@ -4,19 +4,19 @@ const proxyquire = require('proxyquire')
 
 describe('api/getRecentTrades', () => {
   const expected = {
-    CreatedTimestampUtc: '2014-08-05T09:14:39.4830696Z',
-    PrimaryCurrencyCode: 'Xbt',
-    SecondaryCurrencyCode: 'Usd',
-    Trades: [
+    createdTimestampUtc: '2014-08-05T09:14:39.4830696Z',
+    primaryCurrencyCode: 'Xbt',
+    secondaryCurrencyCode: 'Usd',
+    trades: [
       {
-        PrimaryCurrencyAmount: 1.0,
-        SecondaryCurrencyTradePrice: 510.0,
-        TradeTimestampUtc: '2014-07-31T10:34:05.935412Z'
+        primaryCurrencyAmount: 1.0,
+        secondaryCurrencyTradePrice: 510.0,
+        tradeTimestampUtc: '2014-07-31T10:34:05.935412Z'
       },
       {
-        PrimaryCurrencyAmount: 0.01,
-        SecondaryCurrencyTradePrice: 501.0,
-        TradeTimestampUtc: '2014-07-31T10:33:24.8458426Z'
+        primaryCurrencyAmount: 0.01,
+        secondaryCurrencyTradePrice: 501.0,
+        tradeTimestampUtc: '2014-07-31T10:33:24.8458426Z'
       }
     ]
   }

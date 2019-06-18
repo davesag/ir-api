@@ -1,15 +1,9 @@
 const axios = require('axios')
 const { transportOptions: defaults, defaultHeaders } = require('../defaults')
+const transformResponse = require('./transformResponse')
+const transformError = require('./transformError')
 
-axios.interceptors.response.use(
-  /* istanbul ignore next */
-  response => response.data,
-  /* istanbul ignore next */
-  error => ({
-    status: error.response.status,
-    message: error.response.data
-  })
-)
+axios.interceptors.response.use(transformResponse, transformError)
 
 let transport
 

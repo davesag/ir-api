@@ -4,17 +4,17 @@ const proxyquire = require('proxyquire')
 
 describe('api/getMarketSummary', () => {
   const expected = {
-    CreatedTimestampUtc: '2014-08-05T06:42:11.3032208Z',
-    CurrentHighestBidPrice: 500.0,
-    CurrentLowestOfferPrice: 1001.0,
-    DayAvgPrice: 510.0,
-    DayHighestPrice: 510.0,
-    DayLowestPrice: 510.0,
-    DayVolumeXbt: 1.0,
-    DayVolumeXbtInSecondaryCurrrency: 0.75,
-    LastPrice: 510.0,
-    PrimaryCurrencyCode: 'Xbt',
-    SecondaryCurrencyCode: 'Usd'
+    createdTimestampUtc: '2014-08-05T06:42:11.3032208Z',
+    currentHighestBidPrice: 500.0,
+    currentLowestOfferPrice: 1001.0,
+    dayAvgPrice: 510.0,
+    dayHighestPrice: 510.0,
+    dayLowestPrice: 510.0,
+    dayVolumeXbt: 1.0,
+    dayVolumeXbtInSecondaryCurrrency: 0.75,
+    lastPrice: 510.0,
+    primaryCurrencyCode: 'Xbt',
+    secondaryCurrencyCode: 'Usd'
   }
 
   const get = stub().resolves(expected)

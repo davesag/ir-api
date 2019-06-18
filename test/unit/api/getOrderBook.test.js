@@ -4,33 +4,33 @@ const proxyquire = require('proxyquire')
 
 describe('api/getOrderBook', () => {
   const expected = {
-    BuyOrders: [
+    buyOrders: [
       {
-        OrderType: 'LimitBid',
-        Price: 497.02,
-        Volume: 0.01
+        orderType: 'LimitBid',
+        price: 497.02,
+        volume: 0.01
       },
       {
-        OrderType: 'LimitBid',
-        Price: 490.0,
-        Volume: 1.0
+        orderType: 'LimitBid',
+        price: 490.0,
+        volume: 1.0
       }
     ],
-    SellOrders: [
+    sellOrders: [
       {
-        OrderType: 'LimitOffer',
-        Price: 500.0,
-        Volume: 1.0
+        orderType: 'LimitOffer',
+        price: 500.0,
+        volume: 1.0
       },
       {
-        OrderType: 'LimitOffer',
-        Price: 505.0,
-        Volume: 1.0
+        orderType: 'LimitOffer',
+        price: 505.0,
+        volume: 1.0
       }
     ],
-    CreatedTimestampUtc: '2014-08-05T06:42:11.3032208Z',
-    PrimaryCurrencyCode: 'Xbt',
-    SecondaryCurrencyCode: 'Usd'
+    createdTimestampUtc: '2014-08-05T06:42:11.3032208Z',
+    primaryCurrencyCode: 'Xbt',
+    secondaryCurrencyCode: 'Usd'
   }
 
   const get = stub().resolves(expected)

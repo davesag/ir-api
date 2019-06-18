@@ -4,33 +4,33 @@ const proxyquire = require('proxyquire')
 
 describe('api/getAllOrders', () => {
   const expected = {
-    BuyOrders: [
+    buyOrders: [
       {
-        Guid: '78c52285-61de-4ccb-914e-d86db9fb498d',
-        Price: 497.02,
-        Volume: 0.01
+        guid: '78c52285-61de-4ccb-914e-d86db9fb498d',
+        price: 497.02,
+        volume: 0.01
       },
       {
-        Guid: 'b0ae2cde-cefb-451d-8c65-92082e062856',
-        Price: 490.0,
-        Volume: 1.0
+        guid: 'b0ae2cde-cefb-451d-8c65-92082e062856',
+        price: 490.0,
+        volume: 1.0
       }
     ],
     SellOrders: [
       {
-        Guid: '9a32ae71-391e-4a21-8817-603472d75342',
-        Price: 500.0,
-        Volume: 1.0
+        guid: '9a32ae71-391e-4a21-8817-603472d75342',
+        price: 500.0,
+        volume: 1.0
       },
       {
-        Guid: '8ee0209f-fd46-4d90-9eed-ab475485e157',
-        Price: 505.0,
-        Volume: 1.0
+        guid: '8ee0209f-fd46-4d90-9eed-ab475485e157',
+        price: 505.0,
+        volume: 1.0
       }
     ],
-    CreatedTimestampUtc: '2014-08-05T06:42:11.3032208Z',
-    PrimaryCurrencyCode: 'Xbt',
-    SecondaryCurrencyCode: 'Usd'
+    createdTimestampUtc: '2014-08-05T06:42:11.3032208Z',
+    primaryCurrencyCode: 'Xbt',
+    secondaryCurrencyCode: 'Usd'
   }
 
   const get = stub().resolves(expected)
