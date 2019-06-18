@@ -5,7 +5,7 @@ const {
 const nextNonce = require('./nextNonce')
 const trimEmptyKeys = require('./trimEmptyKeys')
 
-const payloadBuilder = (apiKey, apiSecret) => (path, payload) => {
+const payloadBuilder = (apiKey, apiSecret) => (path, payload = {}) => {
   const nonce = nextNonce()
   const data = trimEmptyKeys({
     apiKey,
