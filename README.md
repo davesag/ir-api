@@ -12,7 +12,7 @@ A lean, functional Javascript client for the Independent Reserve API. Works both
 
 Under Development — Not ready for use.
 
-[![NPM](https://nodei.co/npm/ir-api.png)](https://nodei.co/npm/ir-api/)
+[![NPM](https://nodei.co/npm/ir-api.png)](https://nodei.co/npm/ir-api/) [![Greenkeeper badge](https://badges.greenkeeper.io/davesag/ir-api.svg)](https://greenkeeper.io/)
 
 ## Usage
 
