@@ -22,6 +22,7 @@ describe('src/index', () => {
       ;[
         'getFxRates',
         'getMarketSummary',
+        'getOrderBook',
         'getValidLimitOrderTypes',
         'getValidMarketOrderTypes',
         'getValidOrderTypes',

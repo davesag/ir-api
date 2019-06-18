@@ -2,17 +2,33 @@ const { expect } = require('chai')
 const { stub } = require('sinon')
 const proxyquire = require('proxyquire')
 
-describe('api/getMarketSummary', () => {
+describe('api/getOrderBook', () => {
   const expected = {
+    BuyOrders: [
+      {
+        OrderType: 'LimitBid',
+        Price: 497.02,
+        Volume: 0.01
+      },
+      {
+        OrderType: 'LimitBid',
+        Price: 490.0,
+        Volume: 1.0
+      }
+    ],
+    SellOrders: [
+      {
+        OrderType: 'LimitOffer',
+        Price: 500.0,
+        Volume: 1.0
+      },
+      {
+        OrderType: 'LimitOffer',
+        Price: 505.0,
+        Volume: 1.0
+      }
+    ],
     CreatedTimestampUtc: '2014-08-05T06:42:11.3032208Z',
-    CurrentHighestBidPrice: 500.0,
-    CurrentLowestOfferPrice: 1001.0,
-    DayAvgPrice: 510.0,
-    DayHighestPrice: 510.0,
-    DayLowestPrice: 510.0,
-    DayVolumeXbt: 1.0,
-    DayVolumeXbtInSecondaryCurrrency: 0.75,
-    LastPrice: 510.0,
     PrimaryCurrencyCode: 'Xbt',
     SecondaryCurrencyCode: 'Usd'
   }
@@ -22,7 +38,7 @@ describe('api/getMarketSummary', () => {
     getTransport: stub().returns({ get })
   }
 
-  const method = proxyquire('../../../src/api/getMarketSummary', {
+  const method = proxyquire('../../../src/api/getOrderBook', {
     '../utils/transport': transport
   })
 
@@ -50,7 +66,7 @@ describe('api/getMarketSummary', () => {
 
   it('called get with the correct params', () => {
     expect(get).to.have.been.calledOnceWith(
-      'Public/GetMarketSummary?primaryCurrencyCode=Xbt&secondaryCurrencyCode=Usd'
+      'Public/GetOrderBook?primaryCurrencyCode=Xbt&secondaryCurrencyCode=Usd'
     )
   })
 
