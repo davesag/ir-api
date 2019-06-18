@@ -6,7 +6,7 @@ describe('src/index', () => {
   const getOpenOrders = stub().returns('getOpenOrders')
 
   const ir = proxyquire('../../src/', {
-    './api/getOpenOrders': getOpenOrders
+    './api/private/getOpenOrders': getOpenOrders
   })
 
   const resetHistory = () => {

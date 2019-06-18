@@ -1,6 +1,6 @@
-const { getTransport } = require('../utils/transport')
-const { defaultParams } = require('../defaults')
-const payloadBuilder = require('../utils/payloadBuilder')
+const payloadBuilder = require('../../utils/payloadBuilder')
+const { getTransport } = require('../../utils/transport')
+const { defaultParams } = require('../../defaults')
 
 const { post } = getTransport()
 

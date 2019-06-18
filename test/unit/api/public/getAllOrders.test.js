@@ -2,28 +2,28 @@ const { expect } = require('chai')
 const { stub } = require('sinon')
 const proxyquire = require('proxyquire')
 
-describe('api/getOrderBook', () => {
+describe('api/public/getAllOrders', () => {
   const expected = {
     buyOrders: [
       {
-        orderType: 'LimitBid',
+        guid: '78c52285-61de-4ccb-914e-d86db9fb498d',
         price: 497.02,
         volume: 0.01
       },
       {
-        orderType: 'LimitBid',
+        guid: 'b0ae2cde-cefb-451d-8c65-92082e062856',
         price: 490.0,
         volume: 1.0
       }
     ],
-    sellOrders: [
+    SellOrders: [
       {
-        orderType: 'LimitOffer',
+        guid: '9a32ae71-391e-4a21-8817-603472d75342',
         price: 500.0,
         volume: 1.0
       },
       {
-        orderType: 'LimitOffer',
+        guid: '8ee0209f-fd46-4d90-9eed-ab475485e157',
         price: 505.0,
         volume: 1.0
       }
@@ -38,8 +38,8 @@ describe('api/getOrderBook', () => {
     getTransport: stub().returns({ get })
   }
 
-  const method = proxyquire('../../../src/api/getOrderBook', {
-    '../utils/transport': transport
+  const method = proxyquire('../../../../src/api/public/getAllOrders', {
+    '../../utils/transport': transport
   })
 
   const resetHistory = () => {
@@ -66,7 +66,7 @@ describe('api/getOrderBook', () => {
 
   it('called get with the correct params', () => {
     expect(get).to.have.been.calledOnceWith(
-      'Public/GetOrderBook?primaryCurrencyCode=Xbt&secondaryCurrencyCode=Usd'
+      'Public/GetAllOrders?primaryCurrencyCode=Xbt&secondaryCurrencyCode=Usd'
     )
   })
 

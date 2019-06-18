@@ -1,4 +1,4 @@
-const { getTransport } = require('../utils/transport')
+const { getTransport } = require('../../utils/transport')
 
 const { get } = getTransport()
 

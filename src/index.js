@@ -1,20 +1,20 @@
 const PUBLIC = {
-  getAllOrders: require('./api/getAllOrders'),
-  getFxRates: require('./api/getFxRates'),
-  getMarketSummary: require('./api/getMarketSummary'),
-  getOrderBook: require('./api/getOrderBook'),
-  getRecentTrades: require('./api/getRecentTrades'),
-  getTradeHistorySummary: require('./api/getTradeHistorySummary'),
-  getValidLimitOrderTypes: require('./api/getValidLimitOrderTypes'),
-  getValidMarketOrderTypes: require('./api/getValidMarketOrderTypes'),
-  getValidOrderTypes: require('./api/getValidOrderTypes'),
-  getValidPrimaryCurrencyCodes: require('./api/getValidPrimaryCurrencyCodes'),
-  getValidSecondaryCurrencyCodes: require('./api/getValidSecondaryCurrencyCodes'),
-  getValidTransactionTypes: require('./api/getValidTransactionTypes')
+  getAllOrders: require('./api/public/getAllOrders'),
+  getFxRates: require('./api/public/getFxRates'),
+  getMarketSummary: require('./api/public/getMarketSummary'),
+  getOrderBook: require('./api/public/getOrderBook'),
+  getRecentTrades: require('./api/public/getRecentTrades'),
+  getTradeHistorySummary: require('./api/public/getTradeHistorySummary'),
+  getValidLimitOrderTypes: require('./api/public/getValidLimitOrderTypes'),
+  getValidMarketOrderTypes: require('./api/public/getValidMarketOrderTypes'),
+  getValidOrderTypes: require('./api/public/getValidOrderTypes'),
+  getValidPrimaryCurrencyCodes: require('./api/public/getValidPrimaryCurrencyCodes'),
+  getValidSecondaryCurrencyCodes: require('./api/public/getValidSecondaryCurrencyCodes'),
+  getValidTransactionTypes: require('./api/public/getValidTransactionTypes')
 }
 
 const PRIVATE = {
-  getOpenOrders: require('./api/getOpenOrders')
+  getOpenOrders: require('./api/private/getOpenOrders')
 }
 
 const attachKeys = (...keys) => (acc, elem) => {

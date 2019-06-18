@@ -2,20 +2,20 @@ const { expect } = require('chai')
 const { stub } = require('sinon')
 const proxyquire = require('proxyquire')
 
-describe('api/getFxRates', () => {
-  const expected = [
-    { currencyCodeA: 'Aud', currencyCodeB: 'Usd', Rate: 0.8683 },
-    { currencyCodeA: 'Usd', currencyCodeB: 'Aud', Rate: 1.1517 }
-  ]
+describe('api/public/getValidSecondaryCurrencyCodes', () => {
+  const expected = ['Aud', 'Usd', 'Nzd']
 
   const get = stub().resolves(expected)
   const transport = {
     getTransport: stub().returns({ get })
   }
 
-  const method = proxyquire('../../../src/api/getFxRates', {
-    '../utils/transport': transport
-  })
+  const method = proxyquire(
+    '../../../../src/api/public/getValidSecondaryCurrencyCodes',
+    {
+      '../../utils/transport': transport
+    }
+  )
 
   const resetHistory = () => {
     transport.getTransport.resetHistory()
@@ -35,7 +35,9 @@ describe('api/getFxRates', () => {
   })
 
   it('called get with the correct params', () => {
-    expect(get).to.have.been.calledOnceWith('Public/GetFxRates')
+    expect(get).to.have.been.calledOnceWith(
+      'Public/GetValidSecondaryCurrencyCodes'
+    )
   })
 
   it('returned the expected result', () => {

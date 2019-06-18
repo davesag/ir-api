@@ -1,9 +1,9 @@
 const { expect } = require('chai')
 const { match, stub } = require('sinon')
 const proxyquire = require('proxyquire')
-const { defaultParams } = require('../../../src/defaults')
+const { defaultParams } = require('../../../../src/defaults')
 
-describe('api/getOpenOrders', () => {
+describe('api/private/getOpenOrders', () => {
   const expected = 'some data'
 
   const post = stub().resolves(expected)
@@ -14,10 +14,11 @@ describe('api/getOpenOrders', () => {
   const buildPayload = stub().returns(payload)
   const payloadBuilder = stub().returns(buildPayload)
 
-  const method = proxyquire('../../../src/api/getOpenOrders', {
-    '../utils/transport': transport,
-    '../utils/payloadBuilder': payloadBuilder
+  const method = proxyquire('../../../../src/api/private/getOpenOrders', {
+    '../../utils/transport': transport,
+    '../../utils/payloadBuilder': payloadBuilder
   })
+
   const apiKey = '1234'
   const apiSecret = '2468'
   const params = {

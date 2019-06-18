@@ -2,16 +2,19 @@ const { expect } = require('chai')
 const { stub } = require('sinon')
 const proxyquire = require('proxyquire')
 
-describe('api/getValidLimitOrderTypes', () => {
-  const expected = ['LimitBid', 'LimitOffer']
+describe('api/public/getFxRates', () => {
+  const expected = [
+    { currencyCodeA: 'Aud', currencyCodeB: 'Usd', Rate: 0.8683 },
+    { currencyCodeA: 'Usd', currencyCodeB: 'Aud', Rate: 1.1517 }
+  ]
 
   const get = stub().resolves(expected)
   const transport = {
     getTransport: stub().returns({ get })
   }
 
-  const method = proxyquire('../../../src/api/getValidLimitOrderTypes', {
-    '../utils/transport': transport
+  const method = proxyquire('../../../../src/api/public/getFxRates', {
+    '../../utils/transport': transport
   })
 
   const resetHistory = () => {
@@ -32,7 +35,7 @@ describe('api/getValidLimitOrderTypes', () => {
   })
 
   it('called get with the correct params', () => {
-    expect(get).to.have.been.calledOnceWith('Public/GetValidLimitOrderTypes')
+    expect(get).to.have.been.calledOnceWith('Public/GetFxRates')
   })
 
   it('returned the expected result', () => {

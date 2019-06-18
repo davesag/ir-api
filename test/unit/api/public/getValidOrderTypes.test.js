@@ -2,26 +2,16 @@ const { expect } = require('chai')
 const { stub } = require('sinon')
 const proxyquire = require('proxyquire')
 
-describe('api/getValidTransactionTypes', () => {
-  const expected = [
-    'AccountFee',
-    'Brokerage',
-    'Deposit',
-    'DepositFee',
-    'GST',
-    'ReferralCommission',
-    'StatementFee',
-    'Trade',
-    'Withdrawal',
-    'WithdrawalFee'
-  ]
+describe('api/public/getValidOrderTypes', () => {
+  const expected = ['LimitBid', 'LimitOffer', 'MarketBid', 'MarketOffer']
+
   const get = stub().resolves(expected)
   const transport = {
     getTransport: stub().returns({ get })
   }
 
-  const method = proxyquire('../../../src/api/getValidTransactionTypes', {
-    '../utils/transport': transport
+  const method = proxyquire('../../../../src/api/public/getValidOrderTypes', {
+    '../../utils/transport': transport
   })
 
   const resetHistory = () => {
@@ -42,7 +32,7 @@ describe('api/getValidTransactionTypes', () => {
   })
 
   it('called get with the correct params', () => {
-    expect(get).to.have.been.calledOnceWith('Public/GetValidTransactionTypes')
+    expect(get).to.have.been.calledOnceWith('Public/GetValidOrderTypes')
   })
 
   it('returned the expected result', () => {

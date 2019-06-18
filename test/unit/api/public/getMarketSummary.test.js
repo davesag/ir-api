@@ -2,7 +2,7 @@ const { expect } = require('chai')
 const { stub } = require('sinon')
 const proxyquire = require('proxyquire')
 
-describe('api/getMarketSummary', () => {
+describe('api/public/getMarketSummary', () => {
   const expected = {
     createdTimestampUtc: '2014-08-05T06:42:11.3032208Z',
     currentHighestBidPrice: 500.0,
@@ -22,8 +22,8 @@ describe('api/getMarketSummary', () => {
     getTransport: stub().returns({ get })
   }
 
-  const method = proxyquire('../../../src/api/getMarketSummary', {
-    '../utils/transport': transport
+  const method = proxyquire('../../../../src/api/public/getMarketSummary', {
+    '../../utils/transport': transport
   })
 
   const resetHistory = () => {

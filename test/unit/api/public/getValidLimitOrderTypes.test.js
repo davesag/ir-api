@@ -2,17 +2,20 @@ const { expect } = require('chai')
 const { stub } = require('sinon')
 const proxyquire = require('proxyquire')
 
-describe('api/getValidSecondaryCurrencyCodes', () => {
-  const expected = ['Aud', 'Usd', 'Nzd']
+describe('api/public/getValidLimitOrderTypes', () => {
+  const expected = ['LimitBid', 'LimitOffer']
 
   const get = stub().resolves(expected)
   const transport = {
     getTransport: stub().returns({ get })
   }
 
-  const method = proxyquire('../../../src/api/getValidSecondaryCurrencyCodes', {
-    '../utils/transport': transport
-  })
+  const method = proxyquire(
+    '../../../../src/api/public/getValidLimitOrderTypes',
+    {
+      '../../utils/transport': transport
+    }
+  )
 
   const resetHistory = () => {
     transport.getTransport.resetHistory()
@@ -32,9 +35,7 @@ describe('api/getValidSecondaryCurrencyCodes', () => {
   })
 
   it('called get with the correct params', () => {
-    expect(get).to.have.been.calledOnceWith(
-      'Public/GetValidSecondaryCurrencyCodes'
-    )
+    expect(get).to.have.been.calledOnceWith('Public/GetValidLimitOrderTypes')
   })
 
   it('returned the expected result', () => {

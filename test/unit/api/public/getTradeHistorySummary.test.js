@@ -2,7 +2,7 @@ const { expect } = require('chai')
 const { stub } = require('sinon')
 const proxyquire = require('proxyquire')
 
-describe('api/getTradeHistorySummary', () => {
+describe('api/public/getTradeHistorySummary', () => {
   const expected = {
     createdTimestampUtc: '2014-08-05T09:02:57.5440691Z',
     historySummaryItems: [
@@ -29,9 +29,12 @@ describe('api/getTradeHistorySummary', () => {
     getTransport: stub().returns({ get })
   }
 
-  const method = proxyquire('../../../src/api/getTradeHistorySummary', {
-    '../utils/transport': transport
-  })
+  const method = proxyquire(
+    '../../../../src/api/public/getTradeHistorySummary',
+    {
+      '../../utils/transport': transport
+    }
+  )
 
   const resetHistory = () => {
     transport.getTransport.resetHistory()

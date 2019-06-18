@@ -2,23 +2,35 @@ const { expect } = require('chai')
 const { stub } = require('sinon')
 const proxyquire = require('proxyquire')
 
-describe('api/getRecentTrades', () => {
+describe('api/public/getOrderBook', () => {
   const expected = {
-    createdTimestampUtc: '2014-08-05T09:14:39.4830696Z',
-    primaryCurrencyCode: 'Xbt',
-    secondaryCurrencyCode: 'Usd',
-    trades: [
+    buyOrders: [
       {
-        primaryCurrencyAmount: 1.0,
-        secondaryCurrencyTradePrice: 510.0,
-        tradeTimestampUtc: '2014-07-31T10:34:05.935412Z'
+        orderType: 'LimitBid',
+        price: 497.02,
+        volume: 0.01
       },
       {
-        primaryCurrencyAmount: 0.01,
-        secondaryCurrencyTradePrice: 501.0,
-        tradeTimestampUtc: '2014-07-31T10:33:24.8458426Z'
+        orderType: 'LimitBid',
+        price: 490.0,
+        volume: 1.0
       }
-    ]
+    ],
+    sellOrders: [
+      {
+        orderType: 'LimitOffer',
+        price: 500.0,
+        volume: 1.0
+      },
+      {
+        orderType: 'LimitOffer',
+        price: 505.0,
+        volume: 1.0
+      }
+    ],
+    createdTimestampUtc: '2014-08-05T06:42:11.3032208Z',
+    primaryCurrencyCode: 'Xbt',
+    secondaryCurrencyCode: 'Usd'
   }
 
   const get = stub().resolves(expected)
@@ -26,8 +38,8 @@ describe('api/getRecentTrades', () => {
     getTransport: stub().returns({ get })
   }
 
-  const method = proxyquire('../../../src/api/getRecentTrades', {
-    '../utils/transport': transport
+  const method = proxyquire('../../../../src/api/public/getOrderBook', {
+    '../../utils/transport': transport
   })
 
   const resetHistory = () => {
@@ -37,8 +49,7 @@ describe('api/getRecentTrades', () => {
 
   const params = {
     primaryCurrencyCode: 'Xbt',
-    secondaryCurrencyCode: 'Usd',
-    numberOfRecentTradesToRetrieve: 25
+    secondaryCurrencyCode: 'Usd'
   }
 
   let result
@@ -55,7 +66,7 @@ describe('api/getRecentTrades', () => {
 
   it('called get with the correct params', () => {
     expect(get).to.have.been.calledOnceWith(
-      'Public/GetRecentTrades?primaryCurrencyCode=Xbt&secondaryCurrencyCode=Usd&numberOfRecentTradesToRetrieve=25'
+      'Public/GetOrderBook?primaryCurrencyCode=Xbt&secondaryCurrencyCode=Usd'
     )
   })
 

@@ -2,7 +2,7 @@ const { expect } = require('chai')
 const { stub } = require('sinon')
 const proxyquire = require('proxyquire')
 
-describe('api/getValidPrimaryCurrencyCodes', () => {
+describe('api/public/getValidPrimaryCurrencyCodes', () => {
   const expected = [
     'Xbt',
     'Xrp',
@@ -23,9 +23,12 @@ describe('api/getValidPrimaryCurrencyCodes', () => {
     getTransport: stub().returns({ get })
   }
 
-  const method = proxyquire('../../../src/api/getValidPrimaryCurrencyCodes', {
-    '../utils/transport': transport
-  })
+  const method = proxyquire(
+    '../../../../src/api/public/getValidPrimaryCurrencyCodes',
+    {
+      '../../utils/transport': transport
+    }
+  )
 
   const resetHistory = () => {
     transport.getTransport.resetHistory()
