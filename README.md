@@ -125,6 +125,7 @@ See [this gist](https://gist.github.com/davesag/3567876481344419827e514bae78a02b
 - API request errors (in the case where the API server does not respond, such as a timeout error) are returned as a `RequestError`. You can look in `error.details` for more information about the specific error.
 - API response errors (when the API responds with an error code) are returned as a `ResponseError`. You can look in `error.status` for the status code and `error.details` for more information.
 - any other errors are simply thrown as normal javascript errors.
+- The API defines certain method parameters as required, as numbers, etc. If the values you pass in fail validation a `ValidationError` will be thrown. You can inspect `error.errors` for a map of the fields that failed validation and which validation they failed.
 
 ## Development
 

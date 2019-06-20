@@ -1,9 +1,9 @@
 class ValidationError extends Error {
-  constructor(message, fields) {
-    super(message)
+  constructor(errors) {
+    super('Validation errors were found')
     this.name = this.constructor.name
     Error.captureStackTrace(this, this.constructor)
-    this.fields = fields
+    this.errors = errors
   }
 }
 

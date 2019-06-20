@@ -1,18 +1,32 @@
 const payloadBuilder = require('../../utils/payloadBuilder')
 const { getTransport } = require('../../utils/transport')
+const validate = require('../../validation')
 
 const { post } = getTransport()
+
+const validation = {
+  primaryCurrencyCode: ['isRequired'],
+  secondaryCurrencyCode: ['isRequired'],
+  orderType: ['isRequired'],
+  volume: ['isRequired']
+}
 
 const placeMarketOrder = (apiKey, apiSecret) => {
   const buildPayload = payloadBuilder(apiKey, apiSecret)
 
-  return async (params = {}) => {
+  return async ({
+    primaryCurrencyCode,
+    secondaryCurrencyCode,
+    orderType,
+    volume
+  }) => {
     const payload = {
-      primaryCurrencyCode: params.primaryCurrencyCode,
-      secondaryCurrencyCode: params.secondaryCurrencyCode,
-      orderType: params.orderType,
-      volume: params.volume
+      primaryCurrencyCode,
+      secondaryCurrencyCode,
+      orderType,
+      volume
     }
+    validate(payload, validation)
     const path = 'Private/PlaceMarketOrder'
     return post(path, buildPayload(path, payload))
   }

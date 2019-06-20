@@ -1,7 +1,13 @@
 const payloadBuilder = require('../../utils/payloadBuilder')
 const { getTransport } = require('../../utils/transport')
+const validate = require('../../validation')
 
 const { post } = getTransport()
+
+const validation = {
+  depositAddress: ['isRequired'],
+  primaryCurrencyCode: ['isRequired']
+}
 
 const synchDigitalCurrencyDepositAddressWithBlockchain = (
   apiKey,
@@ -9,11 +15,9 @@ const synchDigitalCurrencyDepositAddressWithBlockchain = (
 ) => {
   const buildPayload = payloadBuilder(apiKey, apiSecret)
 
-  return async (params = {}) => {
-    const payload = {
-      depositAddress: params.depositAddress,
-      primaryCurrencyCode: params.primaryCurrencyCode
-    }
+  return async ({ depositAddress, primaryCurrencyCode }) => {
+    const payload = { depositAddress, primaryCurrencyCode }
+    validate(payload, validation)
     const path = 'Private/SynchDigitalCurrencyDepositAddressWithBlockchain'
     return post(path, buildPayload(path, payload))
   }
