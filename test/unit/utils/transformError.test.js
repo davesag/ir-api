@@ -1,46 +1,96 @@
 const { expect } = require('chai')
 
 const transformError = require('../../../src/utils/transformError')
+const RequestError = require('../../../src/errors/RequestError')
+const ResponseError = require('../../../src/errors/ResponseError')
 
 describe('utils/transformError', () => {
-  context('if the error has no details', () => {
-    const error = {}
+  const message = 'a message'
+  const data = { Message: 'oops' }
+  const status = 404
+  const config = { url: 'some-url' }
+  const response = { status, data }
+  const request = { something: 'whatever' }
 
-    const expected = {
-      code: 400,
-      message: 'No error message received'
-    }
+  let error
 
-    let result
+  context('error has a config', () => {
+    context('error has a response', () => {
+      before(() => {
+        try {
+          transformError({ message, config, response })
+        } catch (err) {
+          error = err
+        }
+      })
 
-    before(() => {
-      result = transformError(error)
+      it('threw a ResponseError', () => {
+        expect(error).to.be.instanceof(ResponseError)
+      })
+
+      it('has the correct message', () => {
+        expect(error).to.have.property('message', data.Message)
+      })
+
+      it('has the correct status', () => {
+        expect(error).to.have.property('status', status)
+      })
+
+      it('has the correct details', () => {
+        expect(error).to.have.nested.property('details.url', config.url)
+      })
     })
 
-    it('returned the expected data', () => {
-      expect(result).to.deep.equal(expected)
+    context('error has a request', () => {
+      before(() => {
+        try {
+          transformError({ message, config, response })
+        } catch (err) {
+          error = err
+        }
+      })
+
+      it('threw a RequestError', () => {
+        expect(error).to.be.instanceof(RequestError)
+      })
+
+      it('has the correct message', () => {
+        expect(error).to.have.property('message', data.Message)
+      })
+
+      it('has the correct details', () => {
+        expect(error).to.have.nested.property('details.url', config.url)
+      })
     })
   })
 
-  context('if the error has details', () => {
-    const error = {
-      code: 400,
-      message: 'oops'
-    }
-
-    const expected = {
-      code: error.code,
-      message: error.message
-    }
-
-    let result
-
-    before(() => {
-      result = transformError(error)
+  context('error has no config', () => {
+    context('error has a response', () => {
+      it('throws a ResponseError', () =>
+        expect(() =>
+          transformError({
+            message,
+            response: {
+              status,
+              data
+            }
+          })
+        )
+          .to.throw(ResponseError, data.Message)
+          .with.property('status', status))
     })
 
-    it('returned the expected data', () => {
-      expect(result).to.deep.equal(expected)
+    context('error has a request', () => {
+      it('throws a RequestError', () =>
+        expect(() => transformError({ message, request })).to.throw(
+          RequestError,
+          message
+        ))
     })
+  })
+
+  context('just an error', () => {
+    it('throws a RequestError', () =>
+      expect(() => transformError({ message })).to.throw(Error, message))
   })
 })
