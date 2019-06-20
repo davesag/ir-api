@@ -1,19 +1,31 @@
 const payloadBuilder = require('../../utils/payloadBuilder')
 const { getTransport } = require('../../utils/transport')
 const { defaultParams } = require('../../defaults')
+const validate = require('../../validation')
 
 const { post } = getTransport()
+
+const validation = {
+  primaryCurrencyCode: ['isRequired'],
+  secondaryCurrencyCode: ['isRequired']
+}
 
 const getClosedOrders = (apiKey, apiSecret) => {
   const buildPayload = payloadBuilder(apiKey, apiSecret)
 
-  return async (params = {}) => {
+  return async ({
+    primaryCurrencyCode,
+    secondaryCurrencyCode,
+    pageIndex = defaultParams.pageIndex,
+    pageSize = defaultParams.pageSize
+  }) => {
     const payload = {
-      primaryCurrencyCode: params.primaryCurrencyCode,
-      secondaryCurrencyCode: params.secondaryCurrencyCode,
-      pageIndex: params.pageIndex || defaultParams.pageIndex,
-      pageSize: params.pageSize || defaultParams.pageSize
+      primaryCurrencyCode,
+      secondaryCurrencyCode,
+      pageIndex,
+      pageSize
     }
+    validate(payload, validation)
     const path = 'Private/GetClosedOrders'
     return post(path, buildPayload(path, payload))
   }

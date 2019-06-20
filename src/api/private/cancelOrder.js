@@ -11,8 +11,8 @@ const validation = {
 const cancelOrder = (apiKey, apiSecret) => {
   const buildPayload = payloadBuilder(apiKey, apiSecret)
 
-  return async params => {
-    const payload = { orderGuid: params.orderGuid }
+  return async ({ orderGuid }) => {
+    const payload = { orderGuid }
     validate(payload, validation)
     const path = 'Private/CancelOrder'
     return post(path, buildPayload(path, payload))

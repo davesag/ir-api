@@ -17,7 +17,6 @@ const validate = (payload, rules) => {
   }, {})
 
   if (Object.keys(errors).length !== 0) throw new ValidationError(errors)
-  console.log('Object.keys(errors).length', Object.keys(errors).length)
 }
 
 module.exports = validate
