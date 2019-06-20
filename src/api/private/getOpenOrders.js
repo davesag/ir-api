@@ -7,7 +7,9 @@ const { post } = getTransport()
 
 const validation = {
   primaryCurrencyCode: ['isRequired'],
-  secondaryCurrencyCode: ['isRequired']
+  secondaryCurrencyCode: ['isRequired'],
+  pageIndex: ['isPositiveNumber'],
+  pageSize: ['isPositiveNumber']
 }
 
 const getOpenOrders = (apiKey, apiSecret) => {

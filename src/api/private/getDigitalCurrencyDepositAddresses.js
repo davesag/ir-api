@@ -6,7 +6,9 @@ const validate = require('../../validation')
 const { post } = getTransport()
 
 const validation = {
-  primaryCurrencyCode: ['isRequired']
+  primaryCurrencyCode: ['isRequired'],
+  pageIndex: ['isPositiveNumber'],
+  pageSize: ['isPositiveNumber']
 }
 
 const getDigitalCurrencyDepositAddresses = (apiKey, apiSecret) => {

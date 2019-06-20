@@ -1,7 +1,11 @@
 const ValidationError = require('../errors/ValidationError')
 
 const VALIDATIONS = {
-  isRequired: require('./isRequired')
+  isArray: require('./isArray'),
+  isGuid: require('./isGuid'),
+  isPositiveNumber: require('./isPositiveNumber'),
+  isRequired: require('./isRequired'),
+  isString: require('./isString')
 }
 
 const validate = (payload, rules) => {

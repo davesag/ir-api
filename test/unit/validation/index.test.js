@@ -31,7 +31,7 @@ describe('validation', () => {
   })
 
   context('given a non-missing required field', () => {
-    const payload = { orderGuid: '12345' }
+    const payload = { orderGuid: 'dd015a29-8f73-4469-a5fa-ea91544dfcda' }
 
     it('does not throw an error', () =>
       expect(() => {

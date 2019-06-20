@@ -7,8 +7,8 @@ const { post } = getTransport()
 const validation = {
   primaryCurrencyCode: ['isRequired'],
   secondaryCurrencyCode: ['isRequired'],
-  orderType: ['isRequired'],
-  volume: ['isRequired']
+  orderType: ['isRequired', 'isString'],
+  volume: ['isRequired', 'isPositiveNumber']
 }
 
 const placeMarketOrder = (apiKey, apiSecret) => {

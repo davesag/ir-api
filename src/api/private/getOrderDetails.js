@@ -5,7 +5,7 @@ const validate = require('../../validation')
 const { post } = getTransport()
 
 const validation = {
-  orderGuid: ['isRequired']
+  orderGuid: ['isRequired', 'isGuid']
 }
 
 const getOrderDetails = (apiKey, apiSecret) => {

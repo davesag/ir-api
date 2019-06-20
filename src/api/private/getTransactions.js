@@ -4,10 +4,12 @@ const { defaultParams } = require('../../defaults')
 const validate = require('../../validation')
 
 const validation = {
-  accountGuid: ['isRequired'],
+  accountGuid: ['isRequired', 'isGuid'],
   fromTimestampUtc: ['isRequired'],
   toTimestampUtc: ['isRequired'],
-  txTypes: ['isRequired']
+  txTypes: ['isRequired', 'isArray'],
+  pageIndex: ['isPositiveNumber'],
+  pageSize: ['isPositiveNumber']
 }
 
 const { post } = getTransport()
