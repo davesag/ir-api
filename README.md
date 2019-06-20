@@ -31,9 +31,13 @@ const ir = require('ir-api')
 
 const { getValidPrimaryCurrencyCodes } = ir()
 
-getValidPrimaryCurrencyCodes().then(codes => {
-  console.log('codes', codes)
-})
+getValidPrimaryCurrencyCodes()
+  .then(codes => {
+    console.log('codes', codes)
+  })
+  .catch(error => {
+    console.error(error)
+  })
 ```
 
 ### Private Methods
@@ -43,9 +47,13 @@ const ir = require('ir-api')
 
 const { getOpenOrders } = ir('my-api-key', 'my-api-secret')
 
-getOpenOrders().then(data => {
-  console.log('data', data)
-})
+getOpenOrders()
+  .then(data => {
+    console.log('data', data)
+  })
+  .catch(error => {
+    console.error(error)
+  })
 ```
 
 ### Passing parameters to methods
@@ -56,9 +64,13 @@ Parameters are passed as an object, so for example
 getOpenOrders({
   primaryCurrencyCode: 'Xbt',
   secondaryCurrencyCode: 'Usd'
-}).then(data => {
-  console.log('data', data)
 })
+  .then(data => {
+    console.log('data', data)
+  })
+  .catch(error => {
+    console.error(error)
+  })
 ```
 
 ### Configuring `axios`
@@ -110,14 +122,9 @@ See [this gist](https://gist.github.com/davesag/3567876481344419827e514bae78a02b
 
 ### Errors
 
-If an API call returns an error we return it as
-
-```js
-{
-  code: 'some code', // an error code or numeric status
-  message: 'some message' // some helpful message
-}
-```
+- API request errors (in the case where the API server does not respond, such as a timeout error) are returned as a `RequestError`. You can look in `error.details` for more information about the specific error.
+- API response errors (when the API responds with an error code) are returned as a `ResponseError`. You can look in `error.status` for the status code and `error.details` for more information.
+- any other errors are simply thrown as normal javascript errors.
 
 ## Development
 
