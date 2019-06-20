@@ -6,7 +6,9 @@ const config = {
   useDefaults: true,
   validation: {
     primaryCurrencyCode: ['isRequired'],
-    secondaryCurrencyCode: ['isRequired']
+    secondaryCurrencyCode: ['isRequired'],
+    pageIndex: ['isPositiveNumber'],
+    pageSize: ['isPositiveNumber']
   }
 }
 

@@ -6,9 +6,9 @@ const { post } = getTransport()
 
 const validation = {
   secondaryCurrencyCode: ['isRequired'],
-  withdrawalAmount: ['isRequired'],
-  withdrawalBankAccountName: ['isRequired'],
-  comment: ['isRequired']
+  withdrawalAmount: ['isRequired', 'isPositiveNumber'],
+  withdrawalBankAccountName: ['isRequired', 'isString'],
+  comment: ['isRequired', 'isString']
 }
 
 const requestFiatWithdrawal = (apiKey, apiSecret) => {

@@ -5,7 +5,9 @@ const config = {
   params: { primaryCurrencyCode: 'Eth' },
   useDefaults: true,
   validation: {
-    primaryCurrencyCode: ['isRequired']
+    primaryCurrencyCode: ['isRequired'],
+    pageIndex: ['isPositiveNumber'],
+    pageSize: ['isPositiveNumber']
   }
 }
 

@@ -11,9 +11,9 @@ const config = {
   },
   useDefaults: false,
   validation: {
-    amount: ['isRequired'],
+    amount: ['isRequired', 'isPositiveNumber'],
     withdrawalAddress: ['isRequired'],
-    comment: ['isRequired']
+    comment: ['isRequired', 'isString']
   }
 }
 

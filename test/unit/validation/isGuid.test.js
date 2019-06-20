@@ -1,15 +1,9 @@
-const { expect } = require('chai')
+const makeValidationTest = require('../../helpers/makeValidationTest')
 
 const isGuid = require('../../../src/validation/isGuid')
 
 describe('validation/isGuid', () => {
-  const doTest = ([label, value, expected]) => {
-    context(`given ${label}`, () => {
-      it(`returns ${expected}`, () => {
-        expect(isGuid(value)).to.equal(expected)
-      })
-    })
-  }
+  const doTest = makeValidationTest(isGuid)
 
   ;[
     ['a valid guid', '719c495c-a39e-4884-93ac-280b37245037', true],

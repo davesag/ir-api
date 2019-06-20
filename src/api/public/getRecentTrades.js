@@ -7,7 +7,7 @@ const { get } = getTransport()
 const validation = {
   primaryCurrencyCode: ['isRequired'],
   secondaryCurrencyCode: ['isRequired'],
-  numberOfRecentTradesToRetrieve: ['isRequired']
+  numberOfRecentTradesToRetrieve: ['isRequired', 'isPositiveNumber']
 }
 
 const getRecentTrades = async ({

@@ -13,7 +13,9 @@ const config = {
     accountGuid: ['isRequired', 'isGuid'],
     fromTimestampUtc: ['isRequired'],
     toTimestampUtc: ['isRequired'],
-    txTypes: ['isRequired']
+    txTypes: ['isRequired', 'isArray'],
+    pageIndex: ['isPositiveNumber'],
+    pageSize: ['isPositiveNumber']
   }
 }
 

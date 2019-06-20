@@ -5,9 +5,9 @@ const validate = require('../../validation')
 const { post } = getTransport()
 
 const validation = {
-  amount: ['isRequired'],
+  amount: ['isRequired', 'isPositiveNumber'],
   withdrawalAddress: ['isRequired'],
-  comment: ['isRequired']
+  comment: ['isRequired', 'isString']
 }
 
 const withdrawDigitalCurrency = (apiKey, apiSecret) => {
