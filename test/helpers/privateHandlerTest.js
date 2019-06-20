@@ -22,6 +22,18 @@ const skipEmptyTest = (params, validation, useDefaults) => {
   return useDefaults ? [false, {}] : [false]
 }
 
+const validationMatcher = validation =>
+  match(
+    Object.keys(validation).reduce((acc, elem) => {
+      acc[elem] = []
+      validation[elem].forEach(val => {
+        const vmatch = typeof val === 'function' ? match.func : val
+        acc[elem].push(vmatch)
+      })
+      return acc
+    }, {})
+  )
+
 const doTest = ({ handler, params, useDefaults, validation }) => {
   const [skipEmpty, useAsEmpty] = skipEmptyTest(params, validation, useDefaults)
 
@@ -82,7 +94,7 @@ const doTest = ({ handler, params, useDefaults, validation }) => {
           it('called validate with the complete set of params and the validation rules', () => {
             expect(validate).to.have.been.calledOnceWith(
               match(fullParams),
-              validation
+              validationMatcher(validation)
             )
           })
         }
@@ -126,7 +138,7 @@ const doTest = ({ handler, params, useDefaults, validation }) => {
           it('called validate with the complete set of params and the validation rules', () => {
             expect(validate).to.have.been.calledOnceWith(
               match(fullParams),
-              validation
+              validationMatcher(validation)
             )
           })
         }

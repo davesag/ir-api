@@ -1,4 +1,5 @@
 const doTest = require('../../../helpers/privateHandlerTest')
+const isPositiveNumber = require('../../../../src/validation/isPositiveNumber')
 
 const config = {
   handler: 'getDigitalCurrencyDepositAddresses',
@@ -7,7 +8,7 @@ const config = {
   validation: {
     primaryCurrencyCode: ['isRequired'],
     pageIndex: ['isPositiveNumber'],
-    pageSize: ['isPositiveNumber']
+    pageSize: [isPositiveNumber(50)]
   }
 }
 

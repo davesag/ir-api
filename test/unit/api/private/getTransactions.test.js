@@ -1,4 +1,5 @@
 const doTest = require('../../../helpers/privateHandlerTest')
+const isPositiveNumber = require('../../../../src/validation/isPositiveNumber')
 
 const config = {
   handler: 'getTransactions',
@@ -15,7 +16,7 @@ const config = {
     toTimestampUtc: ['isRequired'],
     txTypes: ['isRequired', 'isArray'],
     pageIndex: ['isPositiveNumber'],
-    pageSize: ['isPositiveNumber']
+    pageSize: [isPositiveNumber(50)]
   }
 }
 

@@ -4,18 +4,19 @@ const isRequired = require('../../../src/validation/isRequired')
 
 describe('validation/isRequired', () => {
   const doTest = makeValidationTest(isRequired)
+  const err = 'Field is required'
 
   ;[
-    ['NaN', NaN, false],
-    ['the number 5', 5, true],
-    ['the number 0', 0, true],
-    ['a string', 'test', true],
-    ['an empty string', '', false],
-    ['an empty array', [], false],
-    ['an array', ['test'], true],
-    ['an object', { test: 'test' }, true],
-    ['an empty object', {}, false],
-    ['undefined', undefined, false],
-    ['null', null, false]
+    ['NaN', NaN, err],
+    ['the number 5', 5, null],
+    ['the number 0', 0, null],
+    ['a string', 'test', null],
+    ['an empty string', '', err],
+    ['an empty array', [], err],
+    ['an array', ['test'], null],
+    ['an object', { test: 'test' }, null],
+    ['an empty object', {}, err],
+    ['undefined', undefined, err],
+    ['null', null, err]
   ].forEach(doTest)
 })

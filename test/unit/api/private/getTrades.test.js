@@ -1,4 +1,5 @@
 const doTest = require('../../../helpers/privateHandlerTest')
+const isPositiveNumber = require('../../../../src/validation/isPositiveNumber')
 
 const config = {
   handler: 'getTrades',
@@ -6,7 +7,7 @@ const config = {
   useDefaults: true,
   validation: {
     pageIndex: ['isPositiveNumber'],
-    pageSize: ['isPositiveNumber']
+    pageSize: [isPositiveNumber(50)]
   }
 }
 
