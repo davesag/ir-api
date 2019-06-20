@@ -1,6 +1,6 @@
 {
   "name": "ir-api",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "A functional API client for the Independent Reserve API.",
   "main": "src/index.js",
   "engines": {
