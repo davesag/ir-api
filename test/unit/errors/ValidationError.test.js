@@ -3,15 +3,14 @@ const { expect } = require('chai')
 const ValidationError = require('../../../src/errors/ValidationError')
 
 describe('errors/ValidationError', () => {
-  const message = 'a message'
-  const fields = { orderGuid: 'missing' }
-  const error = new ValidationError(message, fields)
+  const errors = { orderGuid: [undefined, 'isRequired'] }
+  const error = new ValidationError(errors)
 
-  it('has the message', () => {
-    expect(error).to.have.property('message', message)
+  it('has a message', () => {
+    expect(error).to.have.property('message', 'Validation errors were found')
   })
 
-  it('has the fields', () => {
-    expect(error.fields).to.deep.equal(fields)
+  it('has the errors', () => {
+    expect(error.errors).to.deep.equal(errors)
   })
 })

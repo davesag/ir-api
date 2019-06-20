@@ -7,11 +7,11 @@ const { post } = getTransport()
 const getTrades = (apiKey, apiSecret) => {
   const buildPayload = payloadBuilder(apiKey, apiSecret)
 
-  return async (params = {}) => {
-    const payload = {
-      pageIndex: params.pageIndex || defaultParams.pageIndex,
-      pageSize: params.pageSize || defaultParams.pageSize
-    }
+  return async ({
+    pageIndex = defaultParams.pageIndex,
+    pageSize = defaultParams.pageSize
+  }) => {
+    const payload = { pageIndex, pageSize }
     const path = 'Private/GetTrades'
     return post(path, buildPayload(path, payload))
   }
