@@ -1,13 +1,15 @@
 const payloadBuilder = require('../../utils/payloadBuilder')
 const { getTransport } = require('../../utils/transport')
 const validate = require('../../validation')
+const isString = require('../../validation/isString')
 
 const { post } = getTransport()
 
 const validation = {
   amount: ['isRequired', 'isPositiveNumber'],
   withdrawalAddress: ['isRequired'],
-  comment: ['isRequired', 'isString']
+  comment: ['isRequired', isString(500)],
+  destinationTag: [isString(50)]
 }
 
 const withdrawDigitalCurrency = (apiKey, apiSecret) => {

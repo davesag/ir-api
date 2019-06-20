@@ -1,4 +1,5 @@
 const doTest = require('../../../helpers/privateHandlerTest')
+const isPositiveNumber = require('../../../../src/validation/isPositiveNumber')
 
 const config = {
   handler: 'getClosedFilledOrders',
@@ -8,7 +9,7 @@ const config = {
     primaryCurrencyCode: ['isRequired'],
     secondaryCurrencyCode: ['isRequired'],
     pageIndex: ['isPositiveNumber'],
-    pageSize: ['isPositiveNumber']
+    pageSize: [isPositiveNumber(50)]
   }
 }
 

@@ -2,6 +2,7 @@ const payloadBuilder = require('../../utils/payloadBuilder')
 const { getTransport } = require('../../utils/transport')
 const { defaultParams } = require('../../defaults')
 const validate = require('../../validation')
+const isPositiveNumber = require('../../validation/isPositiveNumber')
 
 const validation = {
   accountGuid: ['isRequired', 'isGuid'],
@@ -9,7 +10,7 @@ const validation = {
   toTimestampUtc: ['isRequired'],
   txTypes: ['isRequired', 'isArray'],
   pageIndex: ['isPositiveNumber'],
-  pageSize: ['isPositiveNumber']
+  pageSize: [isPositiveNumber(50)]
 }
 
 const { post } = getTransport()
