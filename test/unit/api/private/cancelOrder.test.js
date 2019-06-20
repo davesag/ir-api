@@ -2,10 +2,10 @@ const doTest = require('../../../helpers/privateHandlerTest')
 
 const config = {
   handler: 'cancelOrder',
-  params: { orderGuid: 'abcd123' },
+  params: { orderGuid: 'dd015a29-8f73-4469-a5fa-ea91544dfcda' },
   useDefaults: false,
   validation: {
-    orderGuid: ['isRequired']
+    orderGuid: ['isRequired', 'isGuid']
   }
 }
 

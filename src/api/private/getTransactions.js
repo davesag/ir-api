@@ -4,7 +4,7 @@ const { defaultParams } = require('../../defaults')
 const validate = require('../../validation')
 
 const validation = {
-  accountGuid: ['isRequired'],
+  accountGuid: ['isRequired', 'isGuid'],
   fromTimestampUtc: ['isRequired'],
   toTimestampUtc: ['isRequired'],
   txTypes: ['isRequired']
