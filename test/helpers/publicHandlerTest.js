@@ -9,18 +9,18 @@ const doTest = ({ handler, params, validation }) => {
     const expected = 'some data'
     const get = stub().resolves(expected)
     const transport = { getTransport: stub().returns({ get }) }
-    const validate = stub()
+    const validateFields = stub()
 
     const proxies = {
       '../../utils/transport': transport
     }
-    if (validation) proxies['../../validation'] = validate
+    if (validation) proxies['../../validation'] = { validateFields }
 
     const method = proxyquire(`../../src/api/public/${handler}`, proxies)
 
     const resetHistory = () => {
       transport.getTransport.resetHistory()
-      validate.resetHistory()
+      validateFields.resetHistory()
       get.resetHistory()
     }
     const path = params
@@ -40,8 +40,11 @@ const doTest = ({ handler, params, validation }) => {
     })
 
     if (validation) {
-      it('called validate with the complete set of params and the validation rules', () => {
-        expect(validate).to.have.been.calledOnceWith(match(params), validation)
+      it('called validateFields with the complete set of params and the validation rules', () => {
+        expect(validateFields).to.have.been.calledOnceWith(
+          match(params),
+          validation
+        )
       })
     }
 

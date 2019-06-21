@@ -8,7 +8,7 @@ const VALIDATIONS = {
   isString: require('./isString')()
 }
 
-const validate = (payload, rules) => {
+const validateFields = (payload, rules) => {
   const errors = Object.keys(payload).reduce((acc, elem) => {
     const validations = rules[elem] || []
     validations.forEach(rule => {
@@ -26,4 +26,4 @@ const validate = (payload, rules) => {
   if (Object.keys(errors).length !== 0) throw new ValidationError(errors)
 }
 
-module.exports = validate
+module.exports = { validateFields }

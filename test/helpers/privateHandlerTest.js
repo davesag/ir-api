@@ -44,13 +44,13 @@ const doTest = ({ handler, params, useDefaults, validation }) => {
     const payload = 'some payload'
     const buildPayload = stub().returns(payload)
     const payloadBuilder = stub().returns(buildPayload)
-    const validate = stub()
+    const validateFields = stub()
 
     const proxies = {
       '../../utils/transport': transport,
       '../../utils/payloadBuilder': payloadBuilder
     }
-    if (validation) proxies['../../validation'] = validate
+    if (validation) proxies['../../validation'] = { validateFields }
 
     const method = proxyquire(`../../src/api/private/${handler}`, proxies)
 
@@ -58,7 +58,7 @@ const doTest = ({ handler, params, useDefaults, validation }) => {
       transport.getTransport.resetHistory()
       payloadBuilder.resetHistory()
       buildPayload.resetHistory()
-      validate.resetHistory()
+      validateFields.resetHistory()
       post.resetHistory()
     }
 
@@ -91,8 +91,8 @@ const doTest = ({ handler, params, useDefaults, validation }) => {
         })
 
         if (validation) {
-          it('called validate with the complete set of params and the validation rules', () => {
-            expect(validate).to.have.been.calledOnceWith(
+          it('called validateFields with the complete set of params and the validation rules', () => {
+            expect(validateFields).to.have.been.calledOnceWith(
               match(fullParams),
               validationMatcher(validation)
             )
@@ -135,8 +135,8 @@ const doTest = ({ handler, params, useDefaults, validation }) => {
         after(resetHistory)
 
         if (validation) {
-          it('called validate with the complete set of params and the validation rules', () => {
-            expect(validate).to.have.been.calledOnceWith(
+          it('called validateFields with the complete set of params and the validation rules', () => {
+            expect(validateFields).to.have.been.calledOnceWith(
               match(fullParams),
               validationMatcher(validation)
             )

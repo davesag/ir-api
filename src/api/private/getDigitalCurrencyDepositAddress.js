@@ -1,6 +1,6 @@
 const payloadBuilder = require('../../utils/payloadBuilder')
 const { getTransport } = require('../../utils/transport')
-const validate = require('../../validation')
+const { validateFields } = require('../../validation')
 
 const { post } = getTransport()
 
@@ -13,7 +13,7 @@ const getDigitalCurrencyDepositAddress = (apiKey, apiSecret) => {
 
   return async ({ primaryCurrencyCode }) => {
     const payload = { primaryCurrencyCode }
-    validate(payload, validation)
+    validateFields(payload, validation)
     const path = 'Private/GetDigitalCurrencyDepositAddress'
     return post(path, buildPayload(path, payload))
   }

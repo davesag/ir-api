@@ -1,7 +1,7 @@
 const payloadBuilder = require('../../utils/payloadBuilder')
 const { getTransport } = require('../../utils/transport')
 const { defaultParams } = require('../../defaults')
-const validate = require('../../validation')
+const { validateFields } = require('../../validation')
 const isPositiveNumber = require('../../validation/isPositiveNumber')
 const isArrayOf = require('../../validation/isArrayOf')
 
@@ -35,7 +35,7 @@ const getTransactions = (apiKey, apiSecret) => {
       pageIndex,
       pageSize
     }
-    validate(payload, validation)
+    validateFields(payload, validation)
     const path = 'Private/GetTransactions'
     return post(path, buildPayload(path, payload))
   }
