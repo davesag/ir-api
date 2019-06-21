@@ -1,7 +1,7 @@
 const ValidationError = require('../errors/ValidationError')
 
 const VALIDATIONS = {
-  isArray: require('./isArray'),
+  isArrayOf: require('./isArrayOf')(),
   isGuid: require('./isGuid'),
   isPositiveNumber: require('./isPositiveNumber')(),
   isRequired: require('./isRequired'),

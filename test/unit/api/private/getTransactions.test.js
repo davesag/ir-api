@@ -1,5 +1,6 @@
 const doTest = require('../../../helpers/privateHandlerTest')
 const isPositiveNumber = require('../../../../src/validation/isPositiveNumber')
+const isArrayOf = require('../../../../src/validation/isArrayOf')
 
 const config = {
   handler: 'getTransactions',
@@ -14,7 +15,7 @@ const config = {
     accountGuid: ['isRequired', 'isGuid'],
     fromTimestampUtc: ['isRequired'],
     toTimestampUtc: ['isRequired'],
-    txTypes: ['isRequired', 'isArray'],
+    txTypes: ['isRequired', isArrayOf(['Brokerage', 'Trade'])],
     pageIndex: ['isPositiveNumber'],
     pageSize: [isPositiveNumber(50)]
   }
