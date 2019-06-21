@@ -2,7 +2,6 @@ const ResponseError = require('../errors/ResponseError')
 const RequestError = require('../errors/RequestError')
 
 const transformError = error => {
-  // console.log(error)
   const details = error.config ? { url: error.config.url } : {}
 
   if (error.response) {

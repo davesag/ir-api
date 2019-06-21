@@ -1,6 +1,6 @@
 const payloadBuilder = require('../../utils/payloadBuilder')
 const { getTransport } = require('../../utils/transport')
-const validate = require('../../validation')
+const { validateFields } = require('../../validation')
 
 const { post } = getTransport()
 
@@ -26,7 +26,7 @@ const placeMarketOrder = (apiKey, apiSecret) => {
       orderType,
       volume
     }
-    validate(payload, validation)
+    validateFields(payload, validation)
     const path = 'Private/PlaceMarketOrder'
     return post(path, buildPayload(path, payload))
   }

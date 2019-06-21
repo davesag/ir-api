@@ -1,26 +1,35 @@
 # ir-api
 
-A lean, functional Javascript client for the Independent Reserve API.
+A NodeJS client for Independent Reserve's API.
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/davesag/ir-api.svg)](https://greenkeeper.io/)
+## Features
 
-<!-- prettier-ignore -->
-| branch | status | coverage | notes |
-| ------ | ------ | -------- | ----- |
-| `develop` | [![CircleCI](https://circleci.com/gh/davesag/ir-api/tree/develop.svg?style=svg)](https://circleci.com/gh/davesag/ir-api/tree/develop) | [![codecov](https://codecov.io/gh/davesag/ir-api/branch/develop/graph/badge.svg)](https://codecov.io/gh/davesag/ir-api) | Work in progress |
-| `master` | [![CircleCI](https://circleci.com/gh/davesag/ir-api/tree/master.svg?style=svg)](https://circleci.com/gh/davesag/ir-api/tree/master) | [![codecov](https://codecov.io/gh/davesag/ir-api/branch/master/graph/badge.svg)](https://codecov.io/gh/davesag/ir-api) | Latest stable release |
+- Complete support for all of Independent Reserve's public and private API methods.
+- Method parameter validation
+- Small package size (62K) with no external dependencies. ([`axios`](https://github.com/axios/axios) is a peer-dependency however.)
+- 100% test coverage
 
 [![NPM](https://nodei.co/npm/ir-api.png)](https://nodei.co/npm/ir-api/)
 
 ## Usage
 
-`ir-api` has no dependencies of its own but requires `axios` as a peer dependency.
+Please familiarise yourself with [Independent Reserve's API Documentation](https://www.independentreserve.com/api)
+
+### Create an account
+
+You will need an account at [Independent Reserve](https://www.independentreserve.com/invite/AJNEHL) and you will need to generate an API Key and API Secret.
+
+#### Please use my referral code if you create an account.
+
+- [`www.independentreserve.com/invite/AJNEHL`](https://www.independentreserve.com/invite/AJNEHL)
+
+### Install
 
 ```sh
 npm install axios ir-api
 ```
 
-The API calls follow the documentation set out at https://www.independentreserve.com/api but start with a lower case letter instead of upper case.
+The API calls follow [the official documentation](https://www.independentreserve.com/api) but start with a lower case letter instead of upper case.
 
 Similarly all returned data will have keys that start with lower case instead of upper case.
 
@@ -116,18 +125,32 @@ Independent Reserve's public API server can be quite slow which is why the `time
 
 All methods return a resolved promise so you can safely use `async` / `await`
 
-### example
+### Example
 
 See [this gist](https://gist.github.com/davesag/3567876481344419827e514bae78a02b) for an example of using the API to retrieve your IR balance, then get the market rates for each of your coins, convert to Australian Dollars and display a simple ASCII table with the results and a total.
 
-### Errors
+### Error Handling
 
 - API request errors (in the case where the API server does not respond, such as a timeout error) are returned as a `RequestError`. You can look in `error.details` for more information about the specific error.
 - API response errors (when the API responds with an error code) are returned as a `ResponseError`. You can look in `error.status` for the status code and `error.details` for more information.
 - any other errors are simply thrown as normal javascript errors.
-- The API defines certain method parameters as required, as numbers, etc. If the values you pass in fail validation a `ValidationError` will be thrown. You can inspect `error.errors` for a map of the fields that failed validation and which validation they failed.
+- The API defines certain method parameters as required, as numbers, etc. If the values you pass in fail validation a `ValidationError` will be thrown. You can inspect `error.errors` for a map of the fields that failed validation and which validation they failed. The validations are by no means exhaustive but serve to save developers a request to the Independent Reserve servers if something is blatantly wrong.
+
+#### Validating Cryptocurrency Addresses
+
+This API client does not know in advance which cryptocurrencies are supported by Independent Reserve, and as such it's not possible to compile a complete set of cryptocurrency address format validators.
+
+Developers using this library are encouraged to use the many 3rd party cryptocurrency address validators that already exist, depending on their specific use cases.
 
 ## Development
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/davesag/ir-api.svg)](https://greenkeeper.io/)
+
+<!-- prettier-ignore -->
+| branch | status | coverage | notes |
+| ------ | ------ | -------- | ----- |
+| `develop` | [![CircleCI](https://circleci.com/gh/davesag/ir-api/tree/develop.svg?style=svg)](https://circleci.com/gh/davesag/ir-api/tree/develop) | [![codecov](https://codecov.io/gh/davesag/ir-api/branch/develop/graph/badge.svg)](https://codecov.io/gh/davesag/ir-api) | Work in progress |
+| `master` | [![CircleCI](https://circleci.com/gh/davesag/ir-api/tree/master.svg?style=svg)](https://circleci.com/gh/davesag/ir-api/tree/master) | [![codecov](https://codecov.io/gh/davesag/ir-api/branch/master/graph/badge.svg)](https://codecov.io/gh/davesag/ir-api) | Latest stable release |
 
 ### Prerequisites
 
@@ -154,3 +177,9 @@ npm run lint
 ## Contributing
 
 Please see the [contributing notes](CONTRIBUTING.md).
+
+### Other ways to contribute
+
+- Join Independent Reserve using my referral code [`www.independentreserve.com/invite/AJNEHL`](https://www.independentreserve.com/invite/AJNEHL)
+- Send me Ether. `0xbd64860033c15c0af5df5a886b997f63a7723d5a`
+- Send me Bitcoin. `1HiqYdJZGmGDaj1ryKjEjaB2RRZuZebZxZ`

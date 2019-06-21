@@ -1,14 +1,15 @@
 const ValidationError = require('../errors/ValidationError')
 
 const VALIDATIONS = {
-  isArray: require('./isArray'),
+  isArrayOf: require('./isArrayOf')(),
   isGuid: require('./isGuid'),
   isPositiveNumber: require('./isPositiveNumber')(),
   isRequired: require('./isRequired'),
-  isString: require('./isString')()
+  isString: require('./isString')(),
+  isTime: require('./isTime')()
 }
 
-const validate = (payload, rules) => {
+const validateFields = (payload, rules) => {
   const errors = Object.keys(payload).reduce((acc, elem) => {
     const validations = rules[elem] || []
     validations.forEach(rule => {
@@ -26,4 +27,4 @@ const validate = (payload, rules) => {
   if (Object.keys(errors).length !== 0) throw new ValidationError(errors)
 }
 
-module.exports = validate
+module.exports = { validateFields }

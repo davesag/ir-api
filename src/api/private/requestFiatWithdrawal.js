@@ -1,6 +1,6 @@
 const payloadBuilder = require('../../utils/payloadBuilder')
 const { getTransport } = require('../../utils/transport')
-const validate = require('../../validation')
+const { validateFields } = require('../../validation')
 const isString = require('../../validation/isString')
 
 const { post } = getTransport()
@@ -27,7 +27,7 @@ const requestFiatWithdrawal = (apiKey, apiSecret) => {
       withdrawalBankAccountName,
       comment
     }
-    validate(payload, validation)
+    validateFields(payload, validation)
     const path = 'Private/RequestFiatWithdrawal'
     return post(path, buildPayload(path, payload))
   }

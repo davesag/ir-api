@@ -1,7 +1,7 @@
 const payloadBuilder = require('../../utils/payloadBuilder')
 const { getTransport } = require('../../utils/transport')
 const { defaultParams } = require('../../defaults')
-const validate = require('../../validation')
+const { validateFields } = require('../../validation')
 const isPositiveNumber = require('../../validation/isPositiveNumber')
 
 const { post } = getTransport()
@@ -21,7 +21,7 @@ const getDigitalCurrencyDepositAddresses = (apiKey, apiSecret) => {
     pageSize = defaultParams.pageSize
   }) => {
     const payload = { primaryCurrencyCode, pageIndex, pageSize }
-    validate(payload, validation)
+    validateFields(payload, validation)
     const path = 'Private/GetDigitalCurrencyDepositAddresses'
     return post(path, buildPayload(path, payload))
   }

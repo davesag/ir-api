@@ -1,6 +1,6 @@
 const { encode } = require('querystring')
 const { getTransport } = require('../../utils/transport')
-const validate = require('../../validation')
+const { validateFields } = require('../../validation')
 
 const { get } = getTransport()
 
@@ -20,7 +20,7 @@ const getRecentTrades = async ({
     secondaryCurrencyCode,
     numberOfRecentTradesToRetrieve
   }
-  validate(params, validation)
+  validateFields(params, validation)
   return get(`Public/GetRecentTrades?${encode(params)}`)
 }
 
