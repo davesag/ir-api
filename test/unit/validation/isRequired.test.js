@@ -1,27 +1,22 @@
-const { expect } = require('chai')
+const makeValidationTest = require('../../helpers/makeValidationTest')
 
 const isRequired = require('../../../src/validation/isRequired')
 
 describe('validation/isRequired', () => {
-  const doTest = ([label, value, expected]) => {
-    context(`given ${label}`, () => {
-      it(`returns ${expected}`, () => {
-        expect(isRequired(value)).to.equal(expected)
-      })
-    })
-  }
+  const doTest = makeValidationTest(isRequired)
+  const err = 'Field is required'
 
   ;[
-    ['NaN', NaN, false],
-    ['number 5', 5, true],
-    ['number 0', 0, true],
-    ['string', 'test', true],
-    ['empty string', '', false],
-    ['empty array', [], false],
-    ['array', ['test'], true],
-    ['object', { test: 'test' }, true],
-    ['empty object', {}, false],
-    ['undefined', undefined, false],
-    ['null', null, false]
+    ['NaN', NaN, err],
+    ['the number 5', 5, null],
+    ['the number 0', 0, null],
+    ['a string', 'test', null],
+    ['an empty string', '', err],
+    ['an empty array', [], err],
+    ['an array', ['test'], null],
+    ['an object', { test: 'test' }, null],
+    ['an empty object', {}, err],
+    ['undefined', undefined, err],
+    ['null', null, err]
   ].forEach(doTest)
 })

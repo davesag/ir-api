@@ -1,6 +1,6 @@
 const { encode } = require('querystring')
 const { getTransport } = require('../../utils/transport')
-const validate = require('../../validation')
+const { validateFields } = require('../../validation')
 
 const { get } = getTransport()
 
@@ -14,7 +14,7 @@ const getMarketSummary = async ({
   secondaryCurrencyCode
 }) => {
   const params = { primaryCurrencyCode, secondaryCurrencyCode }
-  validate(params, validation)
+  validateFields(params, validation)
   return get(`Public/GetMarketSummary?${encode(params)}`)
 }
 

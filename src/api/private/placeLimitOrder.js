@@ -1,15 +1,15 @@
 const payloadBuilder = require('../../utils/payloadBuilder')
 const { getTransport } = require('../../utils/transport')
-const validate = require('../../validation')
+const { validateFields } = require('../../validation')
 
 const { post } = getTransport()
 
 const validation = {
   primaryCurrencyCode: ['isRequired'],
   secondaryCurrencyCode: ['isRequired'],
-  orderType: ['isRequired'],
-  price: ['isRequired'],
-  volume: ['isRequired']
+  orderType: ['isRequired', 'isString'],
+  price: ['isRequired', 'isPositiveNumber'],
+  volume: ['isRequired', 'isPositiveNumber']
 }
 
 const placeLimitOrder = (apiKey, apiSecret) => {
@@ -29,7 +29,7 @@ const placeLimitOrder = (apiKey, apiSecret) => {
       price,
       volume
     }
-    validate(payload, validation)
+    validateFields(payload, validation)
     const path = 'Private/PlaceLimitOrder'
     return post(path, buildPayload(path, payload))
   }

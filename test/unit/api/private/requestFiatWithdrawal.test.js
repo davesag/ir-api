@@ -1,4 +1,5 @@
 const doTest = require('../../../helpers/privateHandlerTest')
+const isString = require('../../../../src/validation/isString')
 
 const config = {
   handler: 'requestFiatWithdrawal',
@@ -11,9 +12,9 @@ const config = {
   useDefaults: false,
   validation: {
     secondaryCurrencyCode: ['isRequired'],
-    withdrawalAmount: ['isRequired'],
-    withdrawalBankAccountName: ['isRequired'],
-    comment: ['isRequired']
+    withdrawalAmount: ['isRequired', 'isPositiveNumber'],
+    withdrawalBankAccountName: ['isRequired', 'isString'],
+    comment: ['isRequired', isString(500)]
   }
 }
 

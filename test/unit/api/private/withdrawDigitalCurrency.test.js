@@ -1,4 +1,5 @@
 const doTest = require('../../../helpers/privateHandlerTest')
+const isString = require('../../../../src/validation/isString')
 
 const config = {
   handler: 'withdrawDigitalCurrency',
@@ -11,9 +12,10 @@ const config = {
   },
   useDefaults: false,
   validation: {
-    amount: ['isRequired'],
+    amount: ['isRequired', 'isPositiveNumber'],
     withdrawalAddress: ['isRequired'],
-    comment: ['isRequired']
+    comment: ['isRequired', isString(500)],
+    destinationTag: [isString(50)]
   }
 }
 

@@ -10,7 +10,7 @@ const config = {
   validation: {
     primaryCurrencyCode: ['isRequired'],
     secondaryCurrencyCode: ['isRequired'],
-    numberOfRecentTradesToRetrieve: ['isRequired']
+    numberOfRecentTradesToRetrieve: ['isRequired', 'isPositiveNumber']
   }
 }
 

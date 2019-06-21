@@ -1,13 +1,16 @@
 const payloadBuilder = require('../../utils/payloadBuilder')
 const { getTransport } = require('../../utils/transport')
 const { defaultParams } = require('../../defaults')
-const validate = require('../../validation')
+const { validateFields } = require('../../validation')
+const isPositiveNumber = require('../../validation/isPositiveNumber')
 
 const { post } = getTransport()
 
 const validation = {
   primaryCurrencyCode: ['isRequired'],
-  secondaryCurrencyCode: ['isRequired']
+  secondaryCurrencyCode: ['isRequired'],
+  pageIndex: ['isPositiveNumber'],
+  pageSize: [isPositiveNumber(50)]
 }
 
 const getOpenOrders = (apiKey, apiSecret) => {
@@ -25,7 +28,7 @@ const getOpenOrders = (apiKey, apiSecret) => {
       pageIndex,
       pageSize
     }
-    validate(payload, validation)
+    validateFields(payload, validation)
     const path = 'Private/GetOpenOrders'
     return post(path, buildPayload(path, payload))
   }

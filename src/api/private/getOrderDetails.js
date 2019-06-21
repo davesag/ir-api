@@ -1,11 +1,11 @@
 const payloadBuilder = require('../../utils/payloadBuilder')
 const { getTransport } = require('../../utils/transport')
-const validate = require('../../validation')
+const { validateFields } = require('../../validation')
 
 const { post } = getTransport()
 
 const validation = {
-  orderGuid: ['isRequired']
+  orderGuid: ['isRequired', 'isGuid']
 }
 
 const getOrderDetails = (apiKey, apiSecret) => {
@@ -13,7 +13,7 @@ const getOrderDetails = (apiKey, apiSecret) => {
 
   return async ({ orderGuid }) => {
     const payload = { orderGuid }
-    validate(payload, validation)
+    validateFields(payload, validation)
     const path = 'Private/GetOrderDetails'
     return post(path, buildPayload(path, payload))
   }

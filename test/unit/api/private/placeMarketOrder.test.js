@@ -12,8 +12,8 @@ const config = {
   validation: {
     primaryCurrencyCode: ['isRequired'],
     secondaryCurrencyCode: ['isRequired'],
-    orderType: ['isRequired'],
-    volume: ['isRequired']
+    orderType: ['isRequired', 'isString'],
+    volume: ['isRequired', 'isPositiveNumber']
   }
 }
 
