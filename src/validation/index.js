@@ -5,7 +5,8 @@ const VALIDATIONS = {
   isGuid: require('./isGuid'),
   isPositiveNumber: require('./isPositiveNumber')(),
   isRequired: require('./isRequired'),
-  isString: require('./isString')()
+  isString: require('./isString')(),
+  isTime: require('./isTime')()
 }
 
 const validateFields = (payload, rules) => {

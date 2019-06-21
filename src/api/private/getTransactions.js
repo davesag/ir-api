@@ -4,11 +4,10 @@ const { defaultParams } = require('../../defaults')
 const { validateFields } = require('../../validation')
 const isPositiveNumber = require('../../validation/isPositiveNumber')
 const isArrayOf = require('../../validation/isArrayOf')
+const isTime = require('../../validation/isTime')
 
 const validation = {
   accountGuid: ['isRequired', 'isGuid'],
-  fromTimestampUtc: ['isRequired'],
-  toTimestampUtc: ['isRequired'],
   txTypes: ['isRequired', isArrayOf(['Brokerage', 'Trade'])],
   pageIndex: ['isPositiveNumber'],
   pageSize: [isPositiveNumber(50)]
@@ -35,7 +34,11 @@ const getTransactions = (apiKey, apiSecret) => {
       pageIndex,
       pageSize
     }
-    validateFields(payload, validation)
+    validateFields(payload, {
+      ...validation,
+      fromTimestampUtc: ['isRequired', isTime({ before: toTimestampUtc })],
+      toTimestampUtc: ['isRequired', isTime({ after: fromTimestampUtc })]
+    })
     const path = 'Private/GetTransactions'
     return post(path, buildPayload(path, payload))
   }
