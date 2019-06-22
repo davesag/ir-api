@@ -6,7 +6,7 @@ A NodeJS client for Independent Reserve's API.
 
 - Complete support for all of Independent Reserve's public and private API methods.
 - Method parameter validation
-- automatically delays then retries on request timeout (up to 3 times)
+- automatically delays then retries idempotent methods on request timeout (up to 3 times)
 - Small package size (62K) with no external dependencies. ([`axios`](https://github.com/axios/axios) is a peer-dependency however.)
 - 100% test coverage
 
