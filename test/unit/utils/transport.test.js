@@ -13,12 +13,12 @@ const transformError = require('../../../src/utils/transformError')
 describe('utils/transport', () => {
   const axios = stub()
   axios.get = stub()
-  ;(axios.post = stub()),
-    (axios.interceptors = {
-      response: {
-        use: spy()
-      }
-    })
+  axios.post = stub()
+  axios.interceptors = {
+    response: {
+      use: spy()
+    }
+  }
   axios.create = stub().returns(axios)
 
   const { getTransport, close } = proxyquire('../../../src/utils/transport', {
