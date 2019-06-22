@@ -6,6 +6,7 @@ A NodeJS client for Independent Reserve's API.
 
 - Complete support for all of Independent Reserve's public and private API methods.
 - Method parameter validation
+- automatically delays then retries idempotent methods on request timeout (up to 3 times)
 - Small package size (62K) with no external dependencies. ([`axios`](https://github.com/axios/axios) is a peer-dependency however.)
 - 100% test coverage
 
@@ -135,6 +136,12 @@ See [this gist](https://gist.github.com/davesag/3567876481344419827e514bae78a02b
 - API response errors (when the API responds with an error code) are returned as a `ResponseError`. You can look in `error.status` for the status code and `error.details` for more information.
 - any other errors are simply thrown as normal javascript errors.
 - The API defines certain method parameters as required, as numbers, etc. If the values you pass in fail validation a `ValidationError` will be thrown. You can inspect `error.errors` for a map of the fields that failed validation and which validation they failed. The validations are by no means exhaustive but serve to save developers a request to the Independent Reserve servers if something is blatantly wrong.
+
+#### Handling timeouts
+
+The Independent Reserve API occasionally times out. The client will automatically attempt up to 3 retries of any timed-out idempotent request, with a delay of 250ms on first retry, 500ms on second, and 750ms on third. It will also extend the default timeout on each retried request.
+
+If you still keep seeing timeout errors then you can set a longer base request `timeout` duration as outlined in the configuration example above. The default `timeout` is 2500ms.
 
 #### Validating Cryptocurrency Addresses
 
