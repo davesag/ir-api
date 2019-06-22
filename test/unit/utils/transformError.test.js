@@ -33,7 +33,8 @@ describe('utils/transformError', () => {
       context('error has not been retried before', () => {
         const config = {
           method: 'get',
-          url: 'some/GetMethod'
+          url: 'some/GetMethod',
+          timeout: 2500
         }
 
         before(async () => {
@@ -47,7 +48,8 @@ describe('utils/transformError', () => {
           expect(retry).to.have.been.calledOnceWith(
             match({
               ...config,
-              _retryCount: 1
+              _retryCount: 1,
+              timeout: 2750
             })
           )
         })
@@ -58,7 +60,8 @@ describe('utils/transformError', () => {
           const config = {
             method: 'get',
             url: 'some/GetMethod',
-            _retryCount: 1
+            _retryCount: 1,
+            timeout: 2750
           }
 
           before(async () => {
@@ -72,7 +75,8 @@ describe('utils/transformError', () => {
             expect(retry).to.have.been.calledOnceWith(
               match({
                 ...config,
-                _retryCount: 2
+                _retryCount: 2,
+                timeout: 3250
               })
             )
           })
