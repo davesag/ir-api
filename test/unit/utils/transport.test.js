@@ -11,15 +11,14 @@ const transformResponse = require('../../../src/utils/transformResponse')
 const transformError = require('../../../src/utils/transformError')
 
 describe('utils/transport', () => {
-  const axios = {
-    get: stub(),
-    post: stub(),
-    interceptors: {
+  const axios = stub()
+  axios.get = stub()
+  ;(axios.post = stub()),
+    (axios.interceptors = {
       response: {
         use: spy()
       }
-    }
-  }
+    })
   axios.create = stub().returns(axios)
 
   const { getTransport, close } = proxyquire('../../../src/utils/transport', {
@@ -27,6 +26,7 @@ describe('utils/transport', () => {
   })
 
   const resetHistory = () => {
+    axios.resetHistory()
     axios.create.resetHistory()
     axios.get.resetHistory()
     axios.post.resetHistory()
@@ -138,6 +138,26 @@ describe('utils/transport', () => {
 
     it('called axios.post with the path and data', () => {
       expect(axios.post).to.have.been.calledOnceWith(path, data)
+    })
+
+    it('returned the expected result', () => {
+      expect(result).to.equal(expected)
+    })
+  })
+
+  describe('#retry', () => {
+    const config = 'some config'
+    const expected = 'expected'
+    let result
+
+    before(async () => {
+      axios.resolves(expected)
+      const { retry } = getTransport()
+      result = await retry(config)
+    })
+
+    it('called axios with the config', () => {
+      expect(axios).to.have.been.calledOnceWith(config)
     })
 
     it('returned the expected result', () => {

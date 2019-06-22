@@ -27,8 +27,9 @@ const getTransport = (options = {}) => {
   if (!transport) makeTransport(options)
   const get = async path => transport.get(path)
   const post = async (path, data) => transport.post(path, data)
+  const retry = async config => transport(config)
 
-  return { get, post }
+  return { get, post, retry }
 }
 
 const close = () => {
