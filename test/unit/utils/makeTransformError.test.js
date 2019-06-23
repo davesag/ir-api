@@ -1,17 +1,12 @@
 const { expect } = require('chai')
 const { match, stub } = require('sinon')
-const proxyquire = require('proxyquire')
 
 const RequestError = require('../../../src/errors/RequestError')
 const ResponseError = require('../../../src/errors/ResponseError')
+const makeTransformError = require('../../../src/utils/makeTransformError')
 
-describe('utils/transformError', () => {
-  const retry = stub()
-  const getTransport = stub().returns({ retry })
-
-  const transformError = proxyquire('../../../src/utils/transformError', {
-    './transport': { getTransport }
-  })
+describe('utils/makeTransformError', () => {
+  const transport = stub()
 
   const message = 'a message'
   const data = { Message: 'oops' }
@@ -20,9 +15,10 @@ describe('utils/transformError', () => {
   const request = { something: 'whatever' }
 
   const resetStubs = () => {
-    retry.resetHistory()
-    getTransport.resetHistory()
+    transport.resetHistory()
   }
+
+  const transformError = makeTransformError(transport)
 
   let error
 
@@ -38,14 +34,14 @@ describe('utils/transformError', () => {
         }
 
         before(async () => {
-          retry.resolves()
+          transport.resolves()
           await transformError({ code, message, config, response })
         })
 
         after(resetStubs)
 
-        it('called retry with a modified config', () => {
-          expect(retry).to.have.been.calledOnceWith(
+        it('called transport with a modified config', () => {
+          expect(transport).to.have.been.calledOnceWith(
             match({
               ...config,
               _retryCount: 1,
@@ -65,14 +61,14 @@ describe('utils/transformError', () => {
           }
 
           before(async () => {
-            retry.resolves()
+            transport.resolves()
             await transformError({ code, message, config, response })
           })
 
           after(resetStubs)
 
-          it('called retry with a modified config', () => {
-            expect(retry).to.have.been.calledOnceWith(
+          it('called transport with a modified config', () => {
+            expect(transport).to.have.been.calledOnceWith(
               match({
                 ...config,
                 _retryCount: 2,
@@ -99,8 +95,8 @@ describe('utils/transformError', () => {
 
           after(resetStubs)
 
-          it('did not call retry', () => {
-            expect(retry).not.to.have.been.called
+          it('did not call transport', () => {
+            expect(transport).not.to.have.been.called
           })
         })
       })
