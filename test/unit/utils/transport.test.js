@@ -7,10 +7,10 @@ const {
   defaultHeaders
 } = require('../../../src/defaults')
 
-const transformResponse = require('../../../src/utils/transformResponse')
-const transformError = require('../../../src/utils/transformError')
-
 describe('utils/transport', () => {
+  const transformResponse = stub()
+  const transformError = stub()
+  const makeTransformError = stub().returns(transformError)
   const axios = stub()
   axios.get = stub()
   axios.post = stub()
@@ -22,7 +22,9 @@ describe('utils/transport', () => {
   axios.create = stub().returns(axios)
 
   const { getTransport, close } = proxyquire('../../../src/utils/transport', {
-    axios: axios
+    axios: axios,
+    './makeTransformError': makeTransformError,
+    './transformResponse': transformResponse
   })
 
   const resetHistory = () => {
@@ -31,6 +33,7 @@ describe('utils/transport', () => {
     axios.get.resetHistory()
     axios.post.resetHistory()
     axios.interceptors.response.use.resetHistory()
+    makeTransformError.resetHistory()
   }
 
   describe('#getTransport', () => {
@@ -56,6 +59,10 @@ describe('utils/transport', () => {
           )
         })
 
+        it('called makeTransformError with axios', () => {
+          expect(makeTransformError).to.have.been.calledOnceWith(axios)
+        })
+
         it('called axios.interceptors.response.use', () => {
           expect(axios.interceptors.response.use).to.have.been.calledOnceWith(
             transformResponse,
@@ -79,6 +86,10 @@ describe('utils/transport', () => {
               headers: { ...defaultHeaders, ...headers }
             })
           )
+        })
+
+        it('called makeTransformError with axios', () => {
+          expect(makeTransformError).to.have.been.calledOnceWith(axios)
         })
 
         it('called axios.interceptors.response.use', () => {
@@ -138,26 +149,6 @@ describe('utils/transport', () => {
 
     it('called axios.post with the path and data', () => {
       expect(axios.post).to.have.been.calledOnceWith(path, data)
-    })
-
-    it('returned the expected result', () => {
-      expect(result).to.equal(expected)
-    })
-  })
-
-  describe('#retry', () => {
-    const config = 'some config'
-    const expected = 'expected'
-    let result
-
-    before(async () => {
-      axios.resolves(expected)
-      const { retry } = getTransport()
-      result = await retry(config)
-    })
-
-    it('called axios with the config', () => {
-      expect(axios).to.have.been.calledOnceWith(config)
     })
 
     it('returned the expected result', () => {

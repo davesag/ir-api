@@ -1,7 +1,6 @@
 const ResponseError = require('../errors/ResponseError')
 const RequestError = require('../errors/RequestError')
 const defined = require('./defined')
-const { getTransport } = require('./transport')
 
 const MAX_RETRIES = 3
 const DELAY = 250
@@ -24,12 +23,11 @@ const canRetry = error =>
   !maxRetries(error.config) &&
   error.config.url.includes('/Get')
 
-const transformError = error => {
+const transformError = transport => error => {
   if (canRetry(error)) {
-    const { retry } = getTransport()
     return new Promise(resolve =>
       setTimeout(
-        () => resolve(retry(increment(error.config))),
+        () => resolve(transport(increment(error.config))),
         delay(error.config)
       )
     )
