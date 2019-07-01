@@ -1,6 +1,8 @@
 # ir-api
 
-A NodeJS client for Independent Reserve's API.
+A NodeJS client for [Independent Reserve](https://www.independentreserve.com/invite/AJNEHL)'s API.
+
+**Note** This is a 3rd Party project and is not developed by, or supported by Independent Reserve.
 
 ## Features
 
@@ -26,9 +28,17 @@ You will need an account at [Independent Reserve](https://www.independentreserve
 
 ### Install
 
+#### NodeJS
+
 ```sh
 npm install axios ir-api
 ```
+
+#### React Native
+
+**See below for instructions on using with React Native**
+
+## The API
 
 The API calls follow [the official documentation](https://www.independentreserve.com/api) but start with a lower case letter instead of upper case.
 
@@ -148,6 +158,46 @@ If you still keep seeing timeout errors then you can set a longer base request `
 This API client does not know in advance which cryptocurrencies are supported by Independent Reserve, and as such it's not possible to compile a complete set of cryptocurrency address format validators.
 
 Developers using this library are encouraged to use the many 3rd party cryptocurrency address validators that already exist, depending on their specific use cases.
+
+## Use with React Native
+
+You can use `ir-api` with React Native but you need to do some prep-work first.
+
+### Install shims
+
+You will use [`rn-nodeify`]((https://github.com/tradle/rn-nodeify).
+
+Please do go read the docs at [`tradle/rn-nodeify`](https://github.com/tradle/rn-nodeify) first so you get the general idea.
+
+#### with `npm`
+
+```sh
+npm i axios ir-api react-native-randombytes react-native-crypto
+npm i -D rn-nodeify
+react-native link react-native-randombytes
+./node_modules/.bin/rn-nodeify --hack --install
+```
+
+#### with `yarn`
+
+```sh
+yarn add axios ir-api react-native-randombytes react-native-crypto
+yarn add -D rn-nodeify
+react-native link react-native-randombytes
+./node_modules/.bin/rn-nodeify --yarn --hack --install
+```
+
+### Then edit `shim.js`
+
+open up `shim.js` which was created with the above steps and uncomment the last line.
+
+```js
+require('crypto')
+```
+
+### Then add it to your project
+
+As early in the project as you can, such as in `<projectRoot>/index.js`, add `import './shim'`
 
 ## Development
 
