@@ -1,8 +1,10 @@
+const safeFn = require('../utils/safeFn')
+
 class RequestError extends Error {
   constructor(message, details) {
     super(message)
     this.name = this.constructor.name
-    Error.captureStackTrace(this, this.constructor)
+    safeFn(Error.captureStackTrace, this, this.constructor)
     this.details = details
   }
 }
