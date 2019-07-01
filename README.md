@@ -1,6 +1,8 @@
 # ir-api
 
-A NodeJS client for Independent Reserve's API.
+A NodeJS client for [Independent Reserve](https://www.independentreserve.com/invite/AJNEHL)'s API.
+
+**Note** This is a 3rd Party project and is not developed by, or supported by Independent Reserve.
 
 ## Features
 
