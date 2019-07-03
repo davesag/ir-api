@@ -1,7 +1,12 @@
 module.exports = function(config) {
   config.set({
-    maxConcurrentTestRunners: 2,
-    mutate: ['src/**/*.js', '!src/defaults.js'],
+    // maxConcurrentTestRunners: 2,
+    mutate: [
+      'src/**/*.js',
+      '!src/defaults.js',
+      '!src/api/public/index.js',
+      '!src/api/private/index.js'
+    ],
     mutator: 'javascript',
     packageManager: 'npm',
     reporters: ['clear-text'],
