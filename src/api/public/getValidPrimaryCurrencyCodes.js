@@ -1,8 +1,7 @@
 const { getTransport } = require('../../utils/transport')
 
-const { get } = getTransport()
-
-const getValidPrimaryCurrencyCodes = async () =>
-  get('Public/GetValidPrimaryCurrencyCodes')
-
+const getValidPrimaryCurrencyCodes = async () => {
+  const { get } = getTransport()
+  return get('Public/GetValidPrimaryCurrencyCodes')
+}
 module.exports = getValidPrimaryCurrencyCodes

@@ -1,6 +1,6 @@
 # ir-api
 
-A NodeJS client for [Independent Reserve](https://www.independentreserve.com/invite/AJNEHL)'s API.
+A Javascript client for [Independent Reserve](https://www.independentreserve.com/invite/AJNEHL)'s API.
 
 **Note** This is a 3rd Party project and is not developed by, or supported by Independent Reserve.
 
@@ -8,9 +8,10 @@ A NodeJS client for [Independent Reserve](https://www.independentreserve.com/inv
 
 - Complete support for all of Independent Reserve's public and private API methods.
 - Method parameter validation
-- automatically delays then retries idempotent methods on request timeout (up to 3 times)
+- Automatically delays then retries idempotent methods on request timeout (up to 3 times)
 - Small package size (62K) with no external dependencies. ([`axios`](https://github.com/axios/axios) is a peer-dependency however.)
 - 100% test coverage
+- Works with React Native
 
 [![NPM](https://nodei.co/npm/ir-api.png)](https://nodei.co/npm/ir-api/)
 
@@ -22,7 +23,7 @@ Please familiarise yourself with [Independent Reserve's API Documentation](https
 
 You will need an account at [Independent Reserve](https://www.independentreserve.com/invite/AJNEHL) and you will need to generate an API Key and API Secret.
 
-#### Please use my referral code if you create an account.
+Please use my referral code if you create an account.
 
 - [`www.independentreserve.com/invite/AJNEHL`](https://www.independentreserve.com/invite/AJNEHL)
 
@@ -163,41 +164,73 @@ Developers using this library are encouraged to use the many 3rd party cryptocur
 
 You can use `ir-api` with React Native but you need to do some prep-work first.
 
-### Install shims
+### Install Dependencies
 
-You will use [`rn-nodeify`]((https://github.com/tradle/rn-nodeify).
-
-Please do go read the docs at [`tradle/rn-nodeify`](https://github.com/tradle/rn-nodeify) first so you get the general idea.
-
-#### with `npm`
+With `npm`
 
 ```sh
-npm i axios ir-api react-native-randombytes react-native-crypto
-npm i -D rn-nodeify
-react-native link react-native-randombytes
-./node_modules/.bin/rn-nodeify --hack --install
+npm i axios crypto-browserify process querystring stream-browserify vm-browserify ir-api
 ```
 
-#### with `yarn`
+Or with `yarn`
 
 ```sh
-yarn add axios ir-api react-native-randombytes react-native-crypto
-yarn add -D rn-nodeify
-react-native link react-native-randombytes
-./node_modules/.bin/rn-nodeify --yarn --hack --install
+yarn add axios crypto-browserify process querystring stream-browserify vm-browserify ir-api
 ```
 
-### Then edit `shim.js`
+### Create a `./shim.js` file.
 
-open up `shim.js` which was created with the above steps and uncomment the last line.
+Create a file called `shim.js` at the root of your project
 
 ```js
+/* eslint-disable no-undef */
+if (typeof __dirname === 'undefined') global.__dirname = '/'
+if (typeof __filename === 'undefined') global.__filename = ''
+if (typeof process === 'undefined') {
+  global.process = require('process')
+} else {
+  const bProcess = require('process')
+  for (let p in bProcess) {
+    if (!(p in process)) {
+      process[p] = bProcess[p]
+    }
+  }
+}
+
+process.browser = false
+if (typeof Buffer === 'undefined') global.Buffer = require('buffer').Buffer
+
+// global.location = global.location || { port: 80 }
+const isDev = typeof __DEV__ === 'boolean' && __DEV__
+process.env.NODE_ENV = isDev ? 'development' : 'production'
+if (typeof localStorage !== 'undefined') {
+  localStorage.debug = isDev ? '*' : ''
+}
+
 require('crypto')
 ```
 
-### Then add it to your project
+### Then add `./shim.js` to your project
 
 As early in the project as you can, such as in `<projectRoot>/index.js`, add `import './shim'`
+
+### Modify your `metro.conf.js` file.
+
+Insert the following [resolver config](https://facebook.github.io/metro/docs/en/configuration) in `./metro.conf.js`:
+
+```js
+resolver: {
+  extraNodeModules: {
+    "crypto": require.resolve("crypto-browserify"),
+    "stream": require.resolve("stream-browserify"),
+    "vm": require.resolve("vm-browserify")
+  }
+},
+```
+
+### Example
+
+See [`github.com/davesag/irMobile`](https://github.com/davesag/irMobile)
 
 ## Development
 

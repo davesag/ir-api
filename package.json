@@ -1,7 +1,7 @@
 {
   "name": "ir-api",
-  "version": "1.0.3",
-  "description": "A NodeJS API client for Independent Reserve's API.",
+  "version": "1.0.4",
+  "description": "A Javascript API client for Independent Reserve's API.",
   "main": "src/index.js",
   "engines": {
     "node": ">= 8.10.0"
@@ -36,10 +36,10 @@
     "axios": "^0.19.0"
   },
   "devDependencies": {
-    "@stryker-mutator/core": "^2.0.0",
-    "@stryker-mutator/javascript-mutator": "^2.0.0",
-    "@stryker-mutator/mocha-framework": "^2.0.0",
-    "@stryker-mutator/mocha-runner": "^2.0.0",
+    "@stryker-mutator/core": "^2.0.1",
+    "@stryker-mutator/javascript-mutator": "^2.0.1",
+    "@stryker-mutator/mocha-framework": "^2.0.1",
+    "@stryker-mutator/mocha-runner": "^2.0.1",
     "ajv": "^6.10.0",
     "axios": "^0.19.0",
     "chai": "^4.2.0",
@@ -53,8 +53,8 @@
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
-    "husky": "^2.7.0",
-    "lint-staged": "^8.2.0",
+    "husky": "^3.0.0",
+    "lint-staged": "^9.0.2",
     "mocha": "^6.1.4",
     "nyc": "^14.1.1",
     "prettier": "^1.18.2",

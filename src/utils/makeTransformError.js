@@ -20,8 +20,8 @@ const increment = config => ({
 const canRetry = error =>
   error.code === 'ECONNABORTED' &&
   error.config &&
-  !maxRetries(error.config) &&
-  error.config.url.includes('/Get')
+  error.config.method.toLowerCase() === 'get' &&
+  !maxRetries(error.config)
 
 const transformError = transport => error => {
   if (canRetry(error)) {
