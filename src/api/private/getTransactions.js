@@ -13,8 +13,6 @@ const validation = {
   pageSize: [isPositiveNumber(50)]
 }
 
-const { post } = getTransport()
-
 const getTransactions = (apiKey, apiSecret) => {
   const buildPayload = payloadBuilder(apiKey, apiSecret)
 
@@ -40,6 +38,7 @@ const getTransactions = (apiKey, apiSecret) => {
       toTimestampUtc: ['isRequired', isTime({ after: fromTimestampUtc })]
     })
     const path = 'Private/GetTransactions'
+    const { post } = getTransport()
     return post(path, buildPayload(path, payload))
   }
 }

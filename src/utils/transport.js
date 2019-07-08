@@ -13,11 +13,13 @@ const makeTransport = ({ headers: heads, ...options }) => {
       }
     : defaultHeaders
 
-  transport = axios.create({
+  const config = {
     ...defaults,
     ...options,
     headers
-  })
+  }
+
+  transport = axios.create(config)
 
   transport.interceptors.response.use(
     transformResponse,
