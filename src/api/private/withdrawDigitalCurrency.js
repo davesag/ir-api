@@ -3,8 +3,6 @@ const { getTransport } = require('../../utils/transport')
 const { validateFields } = require('../../validation')
 const isString = require('../../validation/isString')
 
-const { post } = getTransport()
-
 const validation = {
   amount: ['isRequired', 'isPositiveNumber'],
   withdrawalAddress: ['isRequired'],
@@ -31,6 +29,7 @@ const withdrawDigitalCurrency = (apiKey, apiSecret) => {
     }
     validateFields(payload, validation)
     const path = 'Private/WithdrawDigitalCurrency'
+    const { post } = getTransport()
     return post(path, buildPayload(path, payload))
   }
 }

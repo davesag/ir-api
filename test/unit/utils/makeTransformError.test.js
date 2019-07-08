@@ -103,7 +103,7 @@ describe('utils/makeTransformError', () => {
     })
 
     context('error can not be retried', () => {
-      const config = { method: 'get', url: 'some-url' }
+      const config = { method: 'post', url: 'some-url' }
 
       context('error has a response', () => {
         before(() => {

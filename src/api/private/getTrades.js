@@ -4,8 +4,6 @@ const { defaultParams } = require('../../defaults')
 const { validateFields } = require('../../validation')
 const isPositiveNumber = require('../../validation/isPositiveNumber')
 
-const { post } = getTransport()
-
 const validation = {
   pageIndex: ['isPositiveNumber'],
   pageSize: [isPositiveNumber(50)]
@@ -21,6 +19,7 @@ const getTrades = (apiKey, apiSecret) => {
     const payload = { pageIndex, pageSize }
     validateFields(payload, validation)
     const path = 'Private/GetTrades'
+    const { post } = getTransport()
     return post(path, buildPayload(path, payload))
   }
 }
