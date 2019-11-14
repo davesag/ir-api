@@ -24,6 +24,9 @@ describe('validation/isPositiveNumber', () => {
     const err = 'Expected a positive number no greater than 10'
     const doTest = makeTest(10)
 
-    ;[['the number 5', 5, null], ['the number 11', 11, err]].forEach(doTest)
+    ;[
+      ['the number 5', 5, null],
+      ['the number 11', 11, err]
+    ].forEach(doTest)
   })
 })
