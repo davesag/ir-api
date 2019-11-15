@@ -2,15 +2,25 @@
   "name": "ir-api",
   "version": "1.0.4",
   "description": "A Javascript API client for Independent Reserve's API.",
+  "author": "Dave Sag <davesag@gmail.com>",
+  "type": "commonjs",
+  "license": "MIT",
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/davesag"
+  },
   "main": "src/index.js",
   "engines": {
     "node": ">= 8.10.0"
   },
   "files": [
-    "/package*.json",
-    "/src",
-    "/CONTRIBUTING.md"
+    "src",
+    "CONTRIBUTING.md"
   ],
+  "directories": {
+    "lib": "src",
+    "test": "test"
+  },
   "scripts": {
     "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
     "lint": "eslint .",
@@ -25,8 +35,6 @@
     "cryptocurrency",
     "api"
   ],
-  "author": "Dave Sag <davesag@gmail.com>",
-  "license": "MIT",
   "repository": "https://github.com/davesag/ir-api.git",
   "bugs": {
     "url": "https://github.com/davesag/ir-api/issues"
@@ -67,16 +75,16 @@
     "singleQuote": true,
     "proseWrap": "never"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "**/*.{js,json,md}": [
       "prettier --write",
       "git add"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "nyc": {
     "check-coverage": true,
