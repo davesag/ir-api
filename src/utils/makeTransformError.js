@@ -40,7 +40,7 @@ const transformError = transport => error => {
 
   if (error.response) {
     throw new ResponseError(
-      error.response.data['Message'],
+      error.response.data.Message,
       error.response.status,
       details
     )
