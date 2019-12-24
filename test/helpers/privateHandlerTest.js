@@ -25,11 +25,9 @@ const skipEmptyTest = (params, validation, useDefaults) => {
 const validationMatcher = validation =>
   match(
     Object.keys(validation).reduce((acc, elem) => {
-      acc[elem] = []
-      validation[elem].forEach(val => {
-        const vmatch = typeof val === 'function' ? match.func : val
-        acc[elem].push(vmatch)
-      })
+      acc[elem] = validation[elem].map(val =>
+        typeof val === 'function' ? match.func : val
+      )
       return acc
     }, {})
   )
