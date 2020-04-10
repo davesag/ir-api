@@ -34,10 +34,7 @@ const payloadBuilder = (apiKey, apiSecret) => (path, payload = {}) => {
     .join(',')
 
   const signer = createHmac('sha256', Buffer.from(apiSecret, 'utf8'))
-  data.signature = signer
-    .update(message)
-    .digest('hex')
-    .toUpperCase()
+  data.signature = signer.update(message).digest('hex').toUpperCase()
   return data
 }
 
