@@ -12,12 +12,7 @@ const validation = {
 const placeMarketOrder = (apiKey, apiSecret) => {
   const buildPayload = payloadBuilder(apiKey, apiSecret)
 
-  return async ({
-    primaryCurrencyCode,
-    secondaryCurrencyCode,
-    orderType,
-    volume
-  }) => {
+  return async ({ primaryCurrencyCode, secondaryCurrencyCode, orderType, volume }) => {
     const payload = {
       primaryCurrencyCode,
       secondaryCurrencyCode,

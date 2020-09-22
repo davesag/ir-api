@@ -7,10 +7,7 @@ const validation = {
   secondaryCurrencyCode: ['isRequired']
 }
 
-const getMarketSummary = async ({
-  primaryCurrencyCode,
-  secondaryCurrencyCode
-}) => {
+const getMarketSummary = async ({ primaryCurrencyCode, secondaryCurrencyCode }) => {
   const params = { primaryCurrencyCode, secondaryCurrencyCode }
   validateFields(params, validation)
   const { get } = getTransport()

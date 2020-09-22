@@ -13,13 +13,7 @@ const validation = {
 const withdrawDigitalCurrency = (apiKey, apiSecret) => {
   const buildPayload = payloadBuilder(apiKey, apiSecret)
 
-  return async ({
-    amount,
-    withdrawalAddress,
-    comment,
-    primaryCurrencyCode,
-    destinationTag
-  }) => {
+  return async ({ amount, withdrawalAddress, comment, primaryCurrencyCode, destinationTag }) => {
     const payload = {
       amount,
       withdrawalAddress,

@@ -7,10 +7,7 @@ const validation = {
   primaryCurrencyCode: ['isRequired']
 }
 
-const synchDigitalCurrencyDepositAddressWithBlockchain = (
-  apiKey,
-  apiSecret
-) => {
+const synchDigitalCurrencyDepositAddressWithBlockchain = (apiKey, apiSecret) => {
   const buildPayload = payloadBuilder(apiKey, apiSecret)
 
   return async ({ depositAddress, primaryCurrencyCode }) => {

@@ -21,10 +21,7 @@ const makeTransport = ({ headers: heads, ...options }) => {
 
   transport = axios.create(config)
 
-  transport.interceptors.response.use(
-    transformResponse,
-    makeTransformError(transport)
-  )
+  transport.interceptors.response.use(transformResponse, makeTransformError(transport))
   // any other config
 }
 

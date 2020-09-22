@@ -13,13 +13,7 @@ const validation = {
 const placeLimitOrder = (apiKey, apiSecret) => {
   const buildPayload = payloadBuilder(apiKey, apiSecret)
 
-  return async ({
-    primaryCurrencyCode,
-    secondaryCurrencyCode,
-    orderType,
-    price,
-    volume
-  }) => {
+  return async ({ primaryCurrencyCode, secondaryCurrencyCode, orderType, price, volume }) => {
     const payload = {
       primaryCurrencyCode,
       secondaryCurrencyCode,

@@ -12,10 +12,7 @@ const validation = {
 const getTrades = (apiKey, apiSecret) => {
   const buildPayload = payloadBuilder(apiKey, apiSecret)
 
-  return async ({
-    pageIndex = defaultParams.pageIndex,
-    pageSize = defaultParams.pageSize
-  }) => {
+  return async ({ pageIndex = defaultParams.pageIndex, pageSize = defaultParams.pageSize }) => {
     const payload = { pageIndex, pageSize }
     validateFields(payload, validation)
     const path = 'Private/GetTrades'

@@ -6,8 +6,7 @@
 const isArrayOf = (allowed = []) => value =>
   !value ||
   (Array.isArray(value) &&
-    (allowed.length === 0 ||
-      (allowed.length !== 0 && value.every(val => allowed.includes(val)))))
+    (allowed.length === 0 || (allowed.length !== 0 && value.every(val => allowed.includes(val)))))
     ? null
     : allowed.length === 0
     ? 'Expected an array'
