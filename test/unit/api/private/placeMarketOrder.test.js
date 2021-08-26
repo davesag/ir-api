@@ -6,14 +6,16 @@ const config = {
     primaryCurrencyCode: 'Xbt',
     secondaryCurrencyCode: 'Aud',
     orderType: 'MarketOffer',
-    volume: 0.25
+    volume: 0.25,
+    volumeCurrencyType: 'Primary'
   },
   useDefaults: false,
   validation: {
     primaryCurrencyCode: ['isRequired'],
     secondaryCurrencyCode: ['isRequired'],
     orderType: ['isRequired', 'isString'],
-    volume: ['isRequired', 'isPositiveNumber']
+    volume: ['isRequired', 'isPositiveNumber'],
+    volumeCurrencyType: ['isString']
   }
 }
 
