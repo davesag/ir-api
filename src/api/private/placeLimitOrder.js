@@ -7,19 +7,21 @@ const validation = {
   secondaryCurrencyCode: ['isRequired'],
   orderType: ['isRequired', 'isString'],
   price: ['isRequired', 'isPositiveNumber'],
-  volume: ['isRequired', 'isPositiveNumber']
+  volume: ['isRequired', 'isPositiveNumber'],
+  volumeCurrencyType: ['isString']
 }
 
 const placeLimitOrder = (apiKey, apiSecret) => {
   const buildPayload = payloadBuilder(apiKey, apiSecret)
 
-  return async ({ primaryCurrencyCode, secondaryCurrencyCode, orderType, price, volume }) => {
+  return async ({ primaryCurrencyCode, secondaryCurrencyCode, orderType, price, volume, volumeCurrencyType }) => {
     const payload = {
       primaryCurrencyCode,
       secondaryCurrencyCode,
       orderType,
       price,
-      volume
+      volume,
+      volumeCurrencyType
     }
     validateFields(payload, validation)
     const path = 'Private/PlaceLimitOrder'

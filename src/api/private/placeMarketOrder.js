@@ -6,18 +6,20 @@ const validation = {
   primaryCurrencyCode: ['isRequired'],
   secondaryCurrencyCode: ['isRequired'],
   orderType: ['isRequired', 'isString'],
-  volume: ['isRequired', 'isPositiveNumber']
+  volume: ['isRequired', 'isPositiveNumber'],
+  volumeCurrencyType: ['isString']
 }
 
 const placeMarketOrder = (apiKey, apiSecret) => {
   const buildPayload = payloadBuilder(apiKey, apiSecret)
 
-  return async ({ primaryCurrencyCode, secondaryCurrencyCode, orderType, volume }) => {
+  return async ({ primaryCurrencyCode, secondaryCurrencyCode, orderType, volume, volumeCurrencyType }) => {
     const payload = {
       primaryCurrencyCode,
       secondaryCurrencyCode,
       orderType,
-      volume
+      volume,
+      volumeCurrencyType
     }
     validateFields(payload, validation)
     const path = 'Private/PlaceMarketOrder'
