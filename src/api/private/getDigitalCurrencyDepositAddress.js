@@ -6,6 +6,7 @@ const validation = {
   primaryCurrencyCode: ['isRequired']
 }
 
+// https://www.independentreserve.com/products/api#GetDigitalCurrencyDepositAddress
 const getDigitalCurrencyDepositAddress = (apiKey, apiSecret) => {
   const buildPayload = payloadBuilder(apiKey, apiSecret)
 

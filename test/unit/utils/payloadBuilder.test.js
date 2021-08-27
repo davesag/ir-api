@@ -52,11 +52,7 @@ describe('utils/payloadBuilder', () => {
   })
 
   context('given no data', () => {
-    const message = [
-      `${baseURL}/${path}`,
-      `apiKey=${apiKey}`,
-      `nonce=${nonce}`
-    ].join(',')
+    const message = [`${baseURL}/${path}`, `apiKey=${apiKey}`, `nonce=${nonce}`].join(',')
 
     const signature = createHmac('sha256', Buffer.from(apiSecret, 'utf8'))
       .update(message)

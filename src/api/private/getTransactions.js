@@ -13,6 +13,7 @@ const validation = {
   pageSize: [isPositiveNumber(50)]
 }
 
+// https://www.independentreserve.com/products/api#GetTransactions
 const getTransactions = (apiKey, apiSecret) => {
   const buildPayload = payloadBuilder(apiKey, apiSecret)
 

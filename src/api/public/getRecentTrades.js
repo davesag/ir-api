@@ -8,6 +8,7 @@ const validation = {
   numberOfRecentTradesToRetrieve: ['isRequired', 'isPositiveNumber']
 }
 
+// https://www.independentreserve.com/products/api#GetRecentTrades
 const getRecentTrades = async ({
   primaryCurrencyCode,
   secondaryCurrencyCode,

@@ -3,6 +3,7 @@ const { expect } = require('chai')
 const ValidationError = require('../../../src/errors/ValidationError')
 const { validateFields } = require('../../../src/validation')
 const isString = require('../../../src/validation/isString')
+const isOneOf = require('../../../src/validation/isOneOf')
 
 describe('validation', () => {
   describe('#validateFields', () => {
@@ -46,6 +47,16 @@ describe('validation', () => {
     context('given a string field with a max', () => {
       const validations = { comment: [isString(10)] }
       const payload = { comment: '1234567890' }
+
+      it('does not throw an error', () =>
+        expect(() => {
+          validateFields(payload, validations)
+        }).not.to.throw())
+    })
+
+    context('given one of an array of allowed strings', () => {
+      const validations = { volumeCurrencyType: [isOneOf(['Primary', 'Secondary'])] }
+      const payload = { volumeCurrencyType: 'Primary' }
 
       it('does not throw an error', () =>
         expect(() => {

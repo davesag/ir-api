@@ -2,8 +2,7 @@
 const isPositiveNumber = max => value =>
   value === null ||
   value === undefined ||
-  (typeof value === 'number' &&
-    (isNaN(value) || (value > 0 && (!max || (max && !(value > max))))))
+  (typeof value === 'number' && (isNaN(value) || (value > 0 && (!max || (max && !(value > max))))))
     ? null
     : max
     ? `Expected a positive number no greater than ${max}`

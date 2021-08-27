@@ -25,9 +25,7 @@ const skipEmptyTest = (params, validation, useDefaults) => {
 const validationMatcher = validation =>
   match(
     Object.keys(validation).reduce((acc, elem) => {
-      acc[elem] = validation[elem].map(val =>
-        typeof val === 'function' ? match.func : val
-      )
+      acc[elem] = validation[elem].map(val => (typeof val === 'function' ? match.func : val))
       return acc
     }, {})
   )
@@ -103,10 +101,7 @@ const doTest = ({ handler, params, useDefaults, validation }) => {
 
         if (fullParams) {
           it('called buildPayload with the path and params', () => {
-            expect(buildPayload).to.have.been.calledOnceWith(
-              path,
-              match(fullParams)
-            )
+            expect(buildPayload).to.have.been.calledOnceWith(path, match(fullParams))
           })
         } else {
           it('called buildPayload with just the path', () => {
@@ -147,10 +142,7 @@ const doTest = ({ handler, params, useDefaults, validation }) => {
 
         if (fullParams) {
           it('called buildPayload with the path and default params', () => {
-            expect(buildPayload).to.have.been.calledOnceWith(
-              path,
-              match(defaultParams)
-            )
+            expect(buildPayload).to.have.been.calledOnceWith(path, match(defaultParams))
           })
         } else {
           it('called buildPayload with the path only', () => {

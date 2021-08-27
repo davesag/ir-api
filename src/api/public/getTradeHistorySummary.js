@@ -8,6 +8,7 @@ const validation = {
   numberOfHoursInThePastToRetrieve: ['isRequired', 'isPositiveNumber']
 }
 
+// https://www.independentreserve.com/products/api#GetTradeHistorySummary
 const getTradeHistorySummary = async ({
   primaryCurrencyCode,
   secondaryCurrencyCode,

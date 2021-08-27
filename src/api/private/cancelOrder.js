@@ -6,6 +6,7 @@ const validation = {
   orderGuid: ['isRequired', 'isGuid']
 }
 
+// https://www.independentreserve.com/products/api#CancelOrder
 const cancelOrder = (apiKey, apiSecret) => {
   const buildPayload = payloadBuilder(apiKey, apiSecret)
 

@@ -23,9 +23,7 @@ const doTest = ({ handler, params, validation }) => {
       validateFields.resetHistory()
       get.resetHistory()
     }
-    const path = params
-      ? `Public/${uc(handler)}?${encode(params)}`
-      : `Public/${uc(handler)}`
+    const path = params ? `Public/${uc(handler)}?${encode(params)}` : `Public/${uc(handler)}`
 
     let result
 
@@ -41,10 +39,7 @@ const doTest = ({ handler, params, validation }) => {
 
     if (validation) {
       it('called validateFields with the complete set of params and the validation rules', () => {
-        expect(validateFields).to.have.been.calledOnceWith(
-          match(params),
-          validation
-        )
+        expect(validateFields).to.have.been.calledOnceWith(match(params), validation)
       })
     }
 
