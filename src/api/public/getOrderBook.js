@@ -7,6 +7,7 @@ const validation = {
   secondaryCurrencyCode: ['isRequired']
 }
 
+// https://www.independentreserve.com/products/api#GetOrderBook
 const getOrderBook = async ({ primaryCurrencyCode, secondaryCurrencyCode }) => {
   const params = { primaryCurrencyCode, secondaryCurrencyCode }
   validateFields(params, validation)

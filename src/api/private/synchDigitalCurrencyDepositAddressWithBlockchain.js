@@ -7,6 +7,7 @@ const validation = {
   primaryCurrencyCode: ['isRequired']
 }
 
+// https://www.independentreserve.com/products/api#SynchDigitalCurrencyDepositAddressWithBlockchain
 const synchDigitalCurrencyDepositAddressWithBlockchain = (apiKey, apiSecret) => {
   const buildPayload = payloadBuilder(apiKey, apiSecret)
 

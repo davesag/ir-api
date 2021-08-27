@@ -11,6 +11,7 @@ const validation = {
   pageSize: [isPositiveNumber(50)]
 }
 
+// https://www.independentreserve.com/products/api#GetClosedOrders
 const getClosedOrders = (apiKey, apiSecret) => {
   const buildPayload = payloadBuilder(apiKey, apiSecret)
 

@@ -10,6 +10,7 @@ const validation = {
   comment: ['isRequired', isString(500)]
 }
 
+// https://www.independentreserve.com/products/api#RequestFiatWithdrawal
 const requestFiatWithdrawal = (apiKey, apiSecret) => {
   const buildPayload = payloadBuilder(apiKey, apiSecret)
 

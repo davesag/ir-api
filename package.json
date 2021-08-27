@@ -2,7 +2,10 @@
   "name": "ir-api",
   "version": "1.0.6",
   "description": "A Javascript API client for Independent Reserve's API.",
-  "author": "Dave Sag <davesag@gmail.com>",
+  "author": "Dave Sag (https://github.com/davesag)",
+  "contributors": [
+    "Oleg Koval (https://github.com/oleg-koval)"
+  ],
   "type": "commonjs",
   "license": "MIT",
   "funding": {
@@ -33,7 +36,11 @@
   "keywords": [
     "independent-reserve",
     "cryptocurrency",
-    "api"
+    "bitcoin",
+    "ether",
+    "ada",
+    "api",
+    "exchange"
   ],
   "repository": "https://github.com/davesag/ir-api.git",
   "bugs": {

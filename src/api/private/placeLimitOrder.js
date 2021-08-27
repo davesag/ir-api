@@ -7,21 +7,20 @@ const validation = {
   secondaryCurrencyCode: ['isRequired'],
   orderType: ['isRequired', 'isString'],
   price: ['isRequired', 'isPositiveNumber'],
-  volume: ['isRequired', 'isPositiveNumber'],
-  volumeCurrencyType: ['isString']
+  volume: ['isRequired', 'isPositiveNumber']
 }
 
+// https://www.independentreserve.com/products/api#PlaceLimitOrder
 const placeLimitOrder = (apiKey, apiSecret) => {
   const buildPayload = payloadBuilder(apiKey, apiSecret)
 
-  return async ({ primaryCurrencyCode, secondaryCurrencyCode, orderType, price, volume, volumeCurrencyType }) => {
+  return async ({ primaryCurrencyCode, secondaryCurrencyCode, orderType, price, volume }) => {
     const payload = {
       primaryCurrencyCode,
       secondaryCurrencyCode,
       orderType,
       price,
-      volume,
-      volumeCurrencyType
+      volume
     }
     validateFields(payload, validation)
     const path = 'Private/PlaceLimitOrder'

@@ -1,4 +1,5 @@
 const doTest = require('../../../helpers/privateHandlerTest')
+const isOneOf = require('../../../../src/validation/isOneOf')
 
 const config = {
   handler: 'placeMarketOrder',
@@ -15,7 +16,7 @@ const config = {
     secondaryCurrencyCode: ['isRequired'],
     orderType: ['isRequired', 'isString'],
     volume: ['isRequired', 'isPositiveNumber'],
-    volumeCurrencyType: ['isString']
+    volumeCurrencyType: [isOneOf(['Primary', 'Secondary'])]
   }
 }
 

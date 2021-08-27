@@ -6,6 +6,7 @@ const validation = {
   orderGuid: ['isRequired', 'isGuid']
 }
 
+// https://www.independentreserve.com/products/api#GetOrderDetails
 const getOrderDetails = (apiKey, apiSecret) => {
   const buildPayload = payloadBuilder(apiKey, apiSecret)
 

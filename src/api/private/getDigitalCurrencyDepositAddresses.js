@@ -10,6 +10,7 @@ const validation = {
   pageSize: [isPositiveNumber(50)]
 }
 
+// https://www.independentreserve.com/products/api#GetDigitalCurrencyDepositAddresses
 const getDigitalCurrencyDepositAddresses = (apiKey, apiSecret) => {
   const buildPayload = payloadBuilder(apiKey, apiSecret)
 

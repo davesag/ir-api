@@ -9,6 +9,7 @@ const validation = {
   pageSize: [isPositiveNumber(50)]
 }
 
+// https://www.independentreserve.com/products/api#GetTrades
 const getTrades = (apiKey, apiSecret) => {
   const buildPayload = payloadBuilder(apiKey, apiSecret)
 
