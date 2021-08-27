@@ -7,8 +7,7 @@ const config = {
     secondaryCurrencyCode: 'Aud',
     orderType: 'LimitBid',
     price: 12345.67,
-    volume: 0.25,
-    volumeCurrencyType: 'Primary'
+    volume: 0.25
   },
   useDefaults: false,
   validation: {
@@ -16,8 +15,7 @@ const config = {
     secondaryCurrencyCode: ['isRequired'],
     orderType: ['isRequired', 'isString'],
     price: ['isRequired', 'isPositiveNumber'],
-    volume: ['isRequired', 'isPositiveNumber'],
-    volumeCurrencyType: ['isString']
+    volume: ['isRequired', 'isPositiveNumber']
   }
 }
 

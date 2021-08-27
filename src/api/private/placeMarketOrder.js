@@ -10,10 +10,17 @@ const validation = {
   volumeCurrencyType: ['isString']
 }
 
+// https://www.independentreserve.com/products/api#PlaceMarketOrder
 const placeMarketOrder = (apiKey, apiSecret) => {
   const buildPayload = payloadBuilder(apiKey, apiSecret)
 
-  return async ({ primaryCurrencyCode, secondaryCurrencyCode, orderType, volume, volumeCurrencyType }) => {
+  return async ({
+    primaryCurrencyCode,
+    secondaryCurrencyCode,
+    orderType,
+    volume,
+    volumeCurrencyType
+  }) => {
     const payload = {
       primaryCurrencyCode,
       secondaryCurrencyCode,
