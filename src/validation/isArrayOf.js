@@ -1,5 +1,5 @@
 /**
- * if the value is empty or an array return null.
+ * if the value is empty or an array of allowed values return null.
  *  else return error message.
  * ignores the value if it's empty.  use isRequired to enforce requirement
  */

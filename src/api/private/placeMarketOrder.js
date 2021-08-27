@@ -1,13 +1,14 @@
 const payloadBuilder = require('../../utils/payloadBuilder')
 const { getTransport } = require('../../utils/transport')
 const { validateFields } = require('../../validation')
+const isOneOf = require('../../validation/isOneOf')
 
 const validation = {
   primaryCurrencyCode: ['isRequired'],
   secondaryCurrencyCode: ['isRequired'],
   orderType: ['isRequired', 'isString'],
   volume: ['isRequired', 'isPositiveNumber'],
-  volumeCurrencyType: ['isString']
+  volumeCurrencyType: [isOneOf(['Primary', 'Secondary'])]
 }
 
 // https://www.independentreserve.com/products/api#PlaceMarketOrder
