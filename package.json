@@ -1,6 +1,6 @@
 {
   "name": "ir-api",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A Javascript API client for Independent Reserve's API.",
   "author": "Dave Sag (https://github.com/davesag)",
   "contributors": [
