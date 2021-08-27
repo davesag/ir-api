@@ -77,7 +77,7 @@ getOpenOrders()
   })
 ```
 
-### Passing parameters to methods
+### Passing Parameters to Methods
 
 Parameters are passed as an object, so for example
 
@@ -134,7 +134,7 @@ const { getAccounts } = ir('my-api-key', 'my-api-secret', {
 
 Independent Reserve's public API server can be quite slow which is why the `timeout` is set to `2500` by default. It's much faster if you use an `apiKey` and `apiSecret` however.
 
-### Default parameters
+### Default Parameters
 
 - `nonce`: computed for you
 - `pageIndex`: `1`
@@ -145,7 +145,7 @@ Independent Reserve's public API server can be quite slow which is why the `time
 
 All methods return a resolved promise so you can safely use `async` / `await`
 
-### Example
+### Example Gist
 
 See [this gist](https://gist.github.com/davesag/3567876481344419827e514bae78a02b) for an example of using the API to retrieve your IR balance, then get the market rates for each of your coins, convert to Australian Dollars and display a simple ASCII table with the results and a total.
 
@@ -156,7 +156,7 @@ See [this gist](https://gist.github.com/davesag/3567876481344419827e514bae78a02b
 - any other errors are simply thrown as normal javascript errors.
 - The API defines certain method parameters as required, as numbers, etc. If the values you pass in fail validation a `ValidationError` will be thrown. You can inspect `error.errors` for a map of the fields that failed validation and which validation they failed. The validations are by no means exhaustive but serve to save developers a request to the Independent Reserve servers if something is blatantly wrong.
 
-#### Handling timeouts
+#### Handling Timeouts
 
 The Independent Reserve API occasionally times out. The client will automatically attempt up to 3 retries of any timed-out idempotent request, with a delay of 250ms on first retry, 500ms on second, and 750ms on third. It will also extend the default timeout on each retried request.
 
@@ -186,7 +186,7 @@ Or with `yarn`
 yarn add axios crypto-browserify process querystring stream-browserify vm-browserify ir-api
 ```
 
-### Create a `./shim.js` file.
+### Create a `./shim.js` File
 
 Create a file called `shim.js` at the root of your project
 
@@ -218,11 +218,11 @@ if (typeof localStorage !== 'undefined') {
 require('crypto')
 ```
 
-### Then add `./shim.js` to your project
+### Then Add `./shim.js` to Your Project
 
 As early in the project as you can, such as in `<projectRoot>/index.js`, add `import './shim'`
 
-### Modify your `metro.conf.js` file.
+### Modify Your `metro.conf.js` File
 
 Insert the following [resolver config](https://facebook.github.io/metro/docs/en/configuration) in `./metro.conf.js`:
 
@@ -236,7 +236,7 @@ resolver: {
 },
 ```
 
-### Example
+### Example Mobile App
 
 See [`github.com/davesag/irMobile`](https://github.com/davesag/irMobile)
 
@@ -265,7 +265,7 @@ npm install
 - `npm test` — runs the unit tests
 - `npm run test:unit:cov` — runs the unit tests with code coverage
 
-### Lint it
+### Lint It
 
 ```sh
 npm run lint
@@ -275,7 +275,7 @@ npm run lint
 
 Please see the [contributing notes](CONTRIBUTING.md).
 
-### Other ways to contribute
+### Other Ways to Contribute
 
 - Join Independent Reserve using my referral code [`www.independentreserve.com/invite/AJNEHL`](https://www.independentreserve.com/invite/AJNEHL)
 - Send me Ether. `0xbd64860033c15c0af5df5a886b997f63a7723d5a`

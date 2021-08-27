@@ -10,6 +10,7 @@ const validation = {
   destinationTag: [isString(50)]
 }
 
+// https://www.independentreserve.com/products/api#WithdrawDigitalCurrency
 const withdrawDigitalCurrency = (apiKey, apiSecret) => {
   const buildPayload = payloadBuilder(apiKey, apiSecret)
 
