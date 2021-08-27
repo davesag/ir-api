@@ -109,7 +109,7 @@ Under the hood the `ir-api` uses [`axios`](https://github.com/axios/axios) as it
 }
 ```
 
-You can change this by passing your own configuration object into the `ir` function.
+You can supply your own configuration object to the `ir` function.
 
 ```js
 const ir = require('ir-api')
@@ -122,7 +122,15 @@ const { getAccounts } = ir('my-api-key', 'my-api-secret', {
 
 You can supply any [configuration options that `axios` supports](https://github.com/axios/axios#axioscreateconfig), however if you change the `baseURL`, or `Content-Type` you will find the API calls stop working, so I don't advise doing that.
 
-If your app needs to run integration tests against a mock IR server (maybe you built one for this purpose) then this is where you'd override the `baseURL`.
+That said, if your app needs to run integration tests against a mock IR server (maybe you built one for this purpose) then this is where you'd override the `baseURL`.
+
+```js
+const ir = require('ir-api')
+
+const { getAccounts } = ir('my-api-key', 'my-api-secret', {
+  baseURL: 'https://localhost:8080/' // because maybe you are testing against a local mock server
+})
+```
 
 Independent Reserve's public API server can be quite slow which is why the `timeout` is set to `2500` by default. It's much faster if you use an `apiKey` and `apiSecret` however.
 
