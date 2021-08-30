@@ -1,3 +1,4 @@
+/* eslint-disable fp/no-nil */
 const checkRequired = value =>
   typeof value === 'number'
     ? !isNaN(value)

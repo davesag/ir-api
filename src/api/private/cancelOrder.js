@@ -12,6 +12,7 @@ const cancelOrder = (apiKey, apiSecret) => {
 
   return async ({ orderGuid }) => {
     const payload = { orderGuid }
+    // eslint-disable-next-line fp/no-unused-expression
     validateFields(payload, validation)
     const path = 'Private/CancelOrder'
     const { post } = getTransport()

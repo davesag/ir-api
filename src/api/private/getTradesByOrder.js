@@ -20,6 +20,7 @@ const getTradesByOrder = (apiKey, apiSecret) => {
     pageSize = defaultParams.pageSize
   }) => {
     const payload = { orderGuid, pageIndex, pageSize }
+    // eslint-disable-next-line fp/no-unused-expression
     validateFields(payload, validation)
     const path = 'Private/GetTradesByOrder'
     const { post } = getTransport()

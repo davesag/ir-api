@@ -12,6 +12,7 @@ const getFiatWithdrawal = (apiKey, apiSecret) => {
 
   return async ({ fiatWithdrawalRequestGuid }) => {
     const payload = { fiatWithdrawalRequestGuid }
+    // eslint-disable-next-line fp/no-unused-expression
     validateFields(payload, validation)
     const path = 'Private/GetFiatWithdrawal'
     const { post } = getTransport()

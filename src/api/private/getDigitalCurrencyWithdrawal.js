@@ -12,6 +12,7 @@ const getDigitalCurrencyWithdrawal = (apiKey, apiSecret) => {
 
   return async ({ transactionGuid }) => {
     const payload = { transactionGuid }
+    // eslint-disable-next-line fp/no-unused-expression
     validateFields(payload, validation)
     const path = 'Private/GetDigitalCurrencyWithdrawal'
     const { post } = getTransport()

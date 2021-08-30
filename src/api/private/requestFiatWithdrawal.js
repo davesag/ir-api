@@ -26,6 +26,7 @@ const requestFiatWithdrawal = (apiKey, apiSecret) => {
       withdrawalBankAccountName,
       comment
     }
+    // eslint-disable-next-line fp/no-unused-expression
     validateFields(payload, validation)
     const path = 'Private/RequestFiatWithdrawal'
     const { post } = getTransport()

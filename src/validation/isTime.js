@@ -1,5 +1,8 @@
+/* eslint-disable fp/no-unused-expression */
+/* eslint-disable fp/no-nil */
 const toTime = string => {
   const err = string => {
+    // eslint-disable-next-line fp/no-throw
     throw new Error(`${string} is not an ISO Date string`)
   }
   if (typeof string !== 'string') err(string)
@@ -30,7 +33,6 @@ const isTime =
       }
       return null
     } catch (err) {
-      // console.error(err)
       return err.message
     }
   }

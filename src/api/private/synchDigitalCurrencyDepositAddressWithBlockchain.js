@@ -13,6 +13,7 @@ const synchDigitalCurrencyDepositAddressWithBlockchain = (apiKey, apiSecret) => 
 
   return async ({ depositAddress, primaryCurrencyCode }) => {
     const payload = { depositAddress, primaryCurrencyCode }
+    // eslint-disable-next-line fp/no-unused-expression
     validateFields(payload, validation)
     const path = 'Private/SynchDigitalCurrencyDepositAddressWithBlockchain'
     const { post } = getTransport()

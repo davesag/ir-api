@@ -12,6 +12,7 @@ const getDigitalCurrencyDepositAddress = (apiKey, apiSecret) => {
 
   return async ({ primaryCurrencyCode }) => {
     const payload = { primaryCurrencyCode }
+    // eslint-disable-next-line fp/no-unused-expression
     validateFields(payload, validation)
     const path = 'Private/GetDigitalCurrencyDepositAddress'
     const { post } = getTransport()

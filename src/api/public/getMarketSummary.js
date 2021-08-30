@@ -10,6 +10,7 @@ const validation = {
 // https://www.independentreserve.com/products/api#GetMarketSummary
 const getMarketSummary = async ({ primaryCurrencyCode, secondaryCurrencyCode }) => {
   const params = { primaryCurrencyCode, secondaryCurrencyCode }
+  // eslint-disable-next-line fp/no-unused-expression
   validateFields(params, validation)
   const { get } = getTransport()
   return get(`Public/GetMarketSummary?${encode(params)}`)

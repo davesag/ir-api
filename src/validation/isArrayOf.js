@@ -1,3 +1,4 @@
+/* eslint-disable fp/no-nil */
 /**
  * if the value is empty or an array of allowed values return null.
  *  else return error message.

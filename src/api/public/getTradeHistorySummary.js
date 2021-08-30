@@ -19,6 +19,7 @@ const getTradeHistorySummary = async ({
     secondaryCurrencyCode,
     numberOfHoursInThePastToRetrieve
   }
+  // eslint-disable-next-line fp/no-unused-expression
   validateFields(params, validation)
   const { get } = getTransport()
   return get(`Public/GetTradeHistorySummary?${encode(params)}`)

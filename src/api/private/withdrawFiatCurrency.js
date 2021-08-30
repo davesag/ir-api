@@ -30,6 +30,7 @@ const withdrawFiatCurrency = (apiKey, apiSecret) => {
       useNpp,
       comment
     }
+    // eslint-disable-next-line fp/no-unused-expression
     validateFields(payload, validation)
     const path = 'Private/WithdrawFiatCurrency'
     const { post } = getTransport()

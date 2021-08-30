@@ -20,6 +20,7 @@ const getDigitalCurrencyDepositAddresses = (apiKey, apiSecret) => {
     pageSize = defaultParams.pageSize
   }) => {
     const payload = { primaryCurrencyCode, pageIndex, pageSize }
+    // eslint-disable-next-line fp/no-unused-expression
     validateFields(payload, validation)
     const path = 'Private/GetDigitalCurrencyDepositAddresses'
     const { post } = getTransport()

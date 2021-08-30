@@ -29,6 +29,7 @@ const placeMarketOrder = (apiKey, apiSecret) => {
       volume,
       volumeCurrencyType
     }
+    // eslint-disable-next-line fp/no-unused-expression
     validateFields(payload, validation)
     const path = 'Private/PlaceMarketOrder'
     const { post } = getTransport()

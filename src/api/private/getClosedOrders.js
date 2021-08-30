@@ -27,6 +27,7 @@ const getClosedOrders = (apiKey, apiSecret) => {
       pageIndex,
       pageSize
     }
+    // eslint-disable-next-line fp/no-unused-expression
     validateFields(payload, validation)
     const path = 'Private/GetClosedOrders'
     const { post } = getTransport()
