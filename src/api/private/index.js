@@ -4,15 +4,22 @@ module.exports = {
   getBrokerageFees: require('./getBrokerageFees'),
   getClosedFilledOrders: require('./getClosedFilledOrders'),
   getClosedOrders: require('./getClosedOrders'),
+  getDepositLimits: require('./getDepositLimits'),
   getDigitalCurrencyDepositAddress: require('./getDigitalCurrencyDepositAddress'),
   getDigitalCurrencyDepositAddresses: require('./getDigitalCurrencyDepositAddresses'),
+  getDigitalCurrencyWithdrawal: require('./getDigitalCurrencyWithdrawal'),
+  getFiatBankAccounts: require('./getFiatBankAccounts'),
+  getFiatWithdrawal: require('./getFiatWithdrawal'),
   getOpenOrders: require('./getOpenOrders'),
   getOrderDetails: require('./getOrderDetails'),
   getTrades: require('./getTrades'),
+  getTradesByOrder: require('./getTradesByOrder'),
   getTransactions: require('./getTransactions'),
+  getWithdrawalLimits: require('./getWithdrawalLimits'),
   placeLimitOrder: require('./placeLimitOrder'),
   placeMarketOrder: require('./placeMarketOrder'),
   requestFiatWithdrawal: require('./requestFiatWithdrawal'),
   synchDigitalCurrencyDepositAddressWithBlockchain: require('./synchDigitalCurrencyDepositAddressWithBlockchain'),
-  withdrawDigitalCurrency: require('./withdrawDigitalCurrency')
+  withdrawDigitalCurrency: require('./withdrawDigitalCurrency'),
+  withdrawFiatCurrency: require('./withdrawFiatCurrency')
 }

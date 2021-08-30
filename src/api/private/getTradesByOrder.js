@@ -5,34 +5,27 @@ const { validateFields } = require('../../validation')
 const isPositiveNumber = require('../../validation/isPositiveNumber')
 
 const validation = {
-  primaryCurrencyCode: ['isRequired'],
-  secondaryCurrencyCode: ['isRequired'],
+  orderGuid: ['isRequired', 'isGuid'],
   pageIndex: ['isPositiveNumber'],
   pageSize: [isPositiveNumber(50)]
 }
 
-// https://www.independentreserve.com/products/api#GetClosedFilledOrders
-const getClosedFilledOrders = (apiKey, apiSecret) => {
+// https://www.independentreserve.com/products/api#GetTradesByOrder
+const getTradesByOrder = (apiKey, apiSecret) => {
   const buildPayload = payloadBuilder(apiKey, apiSecret)
 
   return async ({
-    primaryCurrencyCode,
-    secondaryCurrencyCode,
+    orderGuid,
     pageIndex = defaultParams.pageIndex,
     pageSize = defaultParams.pageSize
   }) => {
-    const payload = {
-      primaryCurrencyCode,
-      secondaryCurrencyCode,
-      pageIndex,
-      pageSize
-    }
+    const payload = { orderGuid, pageIndex, pageSize }
     // eslint-disable-next-line fp/no-unused-expression
     validateFields(payload, validation)
-    const path = 'Private/GetClosedFilledOrders'
+    const path = 'Private/GetTradesByOrder'
     const { post } = getTransport()
     return post(path, buildPayload(path, payload))
   }
 }
 
-module.exports = getClosedFilledOrders
+module.exports = getTradesByOrder

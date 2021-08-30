@@ -33,6 +33,7 @@ const getTransactions = (apiKey, apiSecret) => {
       pageIndex,
       pageSize
     }
+    // eslint-disable-next-line fp/no-unused-expression
     validateFields(payload, {
       ...validation,
       fromTimestampUtc: ['isRequired', isTime({ before: toTimestampUtc })],

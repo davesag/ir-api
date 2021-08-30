@@ -1,3 +1,4 @@
+/* eslint-disable fp/no-unused-expression, fp/no-nil */
 const ValidationError = require('../errors/ValidationError')
 
 const VALIDATIONS = {
@@ -18,13 +19,16 @@ const validateFields = (payload, rules) => {
       const value = payload[elem]
       const result = validator(value)
       if (result) {
+        // eslint-disable-next-line fp/no-mutation
         acc[elem] = acc[elem] || []
+        // eslint-disable-next-line fp/no-mutating-methods
         acc[elem].push([value, result])
       }
     })
     return acc
   }, {})
 
+  // eslint-disable-next-line fp/no-throw
   if (Object.keys(errors).length !== 0) throw new ValidationError(errors)
 }
 

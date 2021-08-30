@@ -12,7 +12,7 @@ const payloadBuilder =
     const data = trimEmptyKeys({
       apiKey,
       nonce,
-      signature: 'placeholder',
+      signature: 'placeholder', // here because order of keys is important
       ...payload
     })
 
@@ -20,24 +20,20 @@ const payloadBuilder =
 
     const message = Object.keys(data)
       .reduce(
-        (acc, elem) => {
-          if (elem !== 'signature') {
-            const value = data[elem]
-            if (Array.isArray(value)) {
-              acc.push(`${elem}=${data[elem].join(',')}`)
-            } else {
-              acc.push(`${elem}=${data[elem]}`)
-            }
-          }
-          return acc
-        },
+        (acc, elem) =>
+          elem === 'signature'
+            ? acc
+            : Array.isArray(data[elem])
+            ? [...acc, `${elem}=${data[elem].join(',')}`]
+            : [...acc, `${elem}=${data[elem]}`],
         [url]
       )
       .join(',')
 
     const signer = createHmac('sha256', Buffer.from(apiSecret, 'utf8'))
+    // eslint-disable-next-line fp/no-mutation
     data.signature = signer.update(message).digest('hex').toUpperCase()
-    return data
+    return data // order of keys is important
   }
 
 module.exports = payloadBuilder

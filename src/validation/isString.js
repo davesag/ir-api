@@ -1,3 +1,4 @@
+/* eslint-disable fp/no-nil */
 /* ignores the value if it's empty.  use isRequired to enforce requirement */
 const isString = max => value =>
   !value || (typeof value === 'string' && (!max || (max && !(value.length > max))))

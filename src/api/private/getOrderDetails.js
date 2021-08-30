@@ -12,6 +12,7 @@ const getOrderDetails = (apiKey, apiSecret) => {
 
   return async ({ orderGuid }) => {
     const payload = { orderGuid }
+    // eslint-disable-next-line fp/no-unused-expression
     validateFields(payload, validation)
     const path = 'Private/GetOrderDetails'
     const { post } = getTransport()

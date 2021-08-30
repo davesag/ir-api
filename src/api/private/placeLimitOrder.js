@@ -22,6 +22,7 @@ const placeLimitOrder = (apiKey, apiSecret) => {
       price,
       volume
     }
+    // eslint-disable-next-line fp/no-unused-expression
     validateFields(payload, validation)
     const path = 'Private/PlaceLimitOrder'
     const { post } = getTransport()

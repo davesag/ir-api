@@ -1,3 +1,4 @@
+/* eslint-disable fp/no-nil */
 /* ignores the value if it's empty.  use isRequired to enforce requirement */
 const isPositiveNumber = max => value =>
   value === null ||

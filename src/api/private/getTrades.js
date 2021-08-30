@@ -15,6 +15,7 @@ const getTrades = (apiKey, apiSecret) => {
 
   return async ({ pageIndex = defaultParams.pageIndex, pageSize = defaultParams.pageSize }) => {
     const payload = { pageIndex, pageSize }
+    // eslint-disable-next-line fp/no-unused-expression
     validateFields(payload, validation)
     const path = 'Private/GetTrades'
     const { post } = getTransport()

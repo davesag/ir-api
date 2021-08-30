@@ -19,6 +19,7 @@ const getRecentTrades = async ({
     secondaryCurrencyCode,
     numberOfRecentTradesToRetrieve
   }
+  // eslint-disable-next-line fp/no-unused-expression
   validateFields(params, validation)
   const { get } = getTransport()
   return get(`Public/GetRecentTrades?${encode(params)}`)

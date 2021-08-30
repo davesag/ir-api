@@ -3,21 +3,21 @@ const { getTransport } = require('../../utils/transport')
 const { validateFields } = require('../../validation')
 
 const validation = {
-  primaryCurrencyCode: ['isRequired']
+  fiatWithdrawalRequestGuid: ['isRequired', 'isGuid']
 }
 
-// https://www.independentreserve.com/products/api#GetDigitalCurrencyDepositAddress
-const getDigitalCurrencyDepositAddress = (apiKey, apiSecret) => {
+// https://www.independentreserve.com/products/api#GetFiatWithdrawal
+const getFiatWithdrawal = (apiKey, apiSecret) => {
   const buildPayload = payloadBuilder(apiKey, apiSecret)
 
-  return async ({ primaryCurrencyCode }) => {
-    const payload = { primaryCurrencyCode }
+  return async ({ fiatWithdrawalRequestGuid }) => {
+    const payload = { fiatWithdrawalRequestGuid }
     // eslint-disable-next-line fp/no-unused-expression
     validateFields(payload, validation)
-    const path = 'Private/GetDigitalCurrencyDepositAddress'
+    const path = 'Private/GetFiatWithdrawal'
     const { post } = getTransport()
     return post(path, buildPayload(path, payload))
   }
 }
 
-module.exports = getDigitalCurrencyDepositAddress
+module.exports = getFiatWithdrawal

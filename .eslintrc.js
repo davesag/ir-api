@@ -1,6 +1,7 @@
+/* eslint-disable fp/no-mutation */
 module.exports = {
-  extends: ['standard', 'plugin:prettier/recommended'],
-  plugins: ['mocha'],
+  extends: ['standard', 'plugin:prettier/recommended', 'plugin:fp/recommended'],
+  plugins: ['fp', 'mocha'],
   parserOptions: {
     sourceType: 'module'
   },
@@ -9,6 +10,8 @@ module.exports = {
     node: true
   },
   rules: {
+    'fp/no-mutation': ['error', { commonjs: true }],
+    'fp/no-rest-parameters': 'off',
     'prettier/prettier': ['error', { singleQuote: true, semi: false }]
   }
 }

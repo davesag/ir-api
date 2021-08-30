@@ -1,3 +1,4 @@
+/* eslint-disable fp/no-throw */
 const ResponseError = require('../errors/ResponseError')
 const RequestError = require('../errors/RequestError')
 const defined = require('./defined')
@@ -21,6 +22,7 @@ const canRetry = error =>
   error.config.method.toLowerCase() === 'get' &&
   !maxRetries(error.config)
 
+// eslint-disable-next-line fp/no-nil
 const transformError = transport => error => {
   if (canRetry(error)) {
     return new Promise(resolve =>
@@ -29,6 +31,7 @@ const transformError = transport => error => {
   }
 
   const details = error.config ? { method: error.config.method, url: error.config.url } : {}
+  // eslint-disable-next-line fp/no-mutation
   if (error.code) details.code = error.code
 
   if (error.response) {

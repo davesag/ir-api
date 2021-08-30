@@ -22,6 +22,7 @@ const withdrawDigitalCurrency = (apiKey, apiSecret) => {
       primaryCurrencyCode,
       destinationTag
     }
+    // eslint-disable-next-line fp/no-unused-expression
     validateFields(payload, validation)
     const path = 'Private/WithdrawDigitalCurrency'
     const { post } = getTransport()
