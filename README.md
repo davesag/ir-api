@@ -252,7 +252,7 @@ See [`github.com/davesag/irMobile`](https://github.com/davesag/irMobile)
 
 ### Prerequisites
 
-- [NodeJS](htps://nodejs.org), I use [`nvm`](https://github.com/creationix/nvm) to manage Node versions — `brew install nvm`.
+- [NodeJS](https://nodejs.org), I use [`nvm`](https://github.com/creationix/nvm) to manage Node versions — `brew install nvm`.
 
 ### Initialisation
 
