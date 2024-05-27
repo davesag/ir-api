@@ -8,7 +8,6 @@ const isTime = require('../../validation/isTime')
 
 const validation = {
   accountGuid: ['isRequired', 'isGuid'],
-  txTypes: ['isRequired', isArrayOf(['Brokerage', 'Trade'])],
   pageIndex: ['isPositiveNumber'],
   pageSize: [isPositiveNumber(50)]
 }
