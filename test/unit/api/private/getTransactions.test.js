@@ -1,6 +1,5 @@
 const doTest = require('../../../helpers/privateHandlerTest')
 const isPositiveNumber = require('../../../../src/validation/isPositiveNumber')
-const isArrayOf = require('../../../../src/validation/isArrayOf')
 const isTime = require('../../../../src/validation/isTime')
 
 const fromTimestampUtc = '2014-08-01T08:00:00Z'
@@ -19,7 +18,6 @@ const config = {
     accountGuid: ['isRequired', 'isGuid'],
     fromTimestampUtc: ['isRequired', isTime({ before: toTimestampUtc })],
     toTimestampUtc: ['isRequired', isTime({ after: fromTimestampUtc })],
-    txTypes: ['isRequired', isArrayOf(['Brokerage', 'Trade'])],
     pageIndex: ['isPositiveNumber'],
     pageSize: [isPositiveNumber(50)]
   }
