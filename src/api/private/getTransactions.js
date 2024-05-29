@@ -10,7 +10,7 @@ const validation = {
   accountGuid: ['isRequired', 'isGuid'],
   txTypes: ['isRequired', isArrayOf(['Brokerage', 'Trade'])],
   pageIndex: ['isPositiveNumber'],
-  pageSize: [isPositiveNumber(50)]
+  pageSize: [isPositiveNumber(5000)]
 }
 
 // https://www.independentreserve.com/products/api#GetTransactions
