@@ -21,7 +21,7 @@ const config = {
     toTimestampUtc: ['isRequired', isTime({ after: fromTimestampUtc })],
     txTypes: ['isRequired', isArrayOf(['Brokerage', 'Trade'])],
     pageIndex: ['isPositiveNumber'],
-    pageSize: [isPositiveNumber(50)]
+    pageSize: [isPositiveNumber(5000)]
   }
 }
 
