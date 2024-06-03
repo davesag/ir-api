@@ -3,12 +3,10 @@ const { getTransport } = require('../../utils/transport')
 const { defaultParams } = require('../../defaults')
 const { validateFields } = require('../../validation')
 const isPositiveNumber = require('../../validation/isPositiveNumber')
-const isArrayOf = require('../../validation/isArrayOf')
 const isTime = require('../../validation/isTime')
 
 const validation = {
   accountGuid: ['isRequired', 'isGuid'],
-  txTypes: ['isRequired', isArrayOf(['Brokerage', 'Trade'])],
   pageIndex: ['isPositiveNumber'],
   pageSize: [isPositiveNumber(50)]
 }
