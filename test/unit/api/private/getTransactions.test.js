@@ -19,7 +19,7 @@ const config = {
     fromTimestampUtc: ['isRequired', isTime({ before: toTimestampUtc })],
     toTimestampUtc: ['isRequired', isTime({ after: fromTimestampUtc })],
     pageIndex: ['isPositiveNumber'],
-    pageSize: [isPositiveNumber(50)]
+    pageSize: [isPositiveNumber(5000)]
   }
 }
 

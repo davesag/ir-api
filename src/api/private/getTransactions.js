@@ -8,7 +8,7 @@ const isTime = require('../../validation/isTime')
 const validation = {
   accountGuid: ['isRequired', 'isGuid'],
   pageIndex: ['isPositiveNumber'],
-  pageSize: [isPositiveNumber(50)]
+  pageSize: [isPositiveNumber(5000)]
 }
 
 // https://www.independentreserve.com/products/api#GetTransactions
