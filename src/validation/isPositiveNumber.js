@@ -6,7 +6,7 @@ const isPositiveNumber = max => value =>
   (typeof value === 'number' && (isNaN(value) || (value > 0 && (!max || (max && !(value > max))))))
     ? null
     : max
-    ? `Expected a positive number no greater than ${max}`
-    : 'Expected a positive number'
+      ? `Expected a positive number no greater than ${max}`
+      : 'Expected a positive number'
 
 module.exports = isPositiveNumber
