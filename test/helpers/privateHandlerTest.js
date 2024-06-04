@@ -69,8 +69,8 @@ const doTest = ({ handler, params, useDefaults, validation }) => {
           }
         : params
       : useDefaults
-      ? defaultParams
-      : undefined
+        ? defaultParams
+        : undefined
 
     let result
 

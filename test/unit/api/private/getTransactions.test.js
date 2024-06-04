@@ -1,6 +1,7 @@
 const doTest = require('../../../helpers/privateHandlerTest')
 const isPositiveNumber = require('../../../../src/validation/isPositiveNumber')
 const isTime = require('../../../../src/validation/isTime')
+const isOneOf = require('../../../../src/validation/isOneOf')
 
 const fromTimestampUtc = '2014-08-01T08:00:00Z'
 const toTimestampUtc = '2016-08-01T08:00:00Z'
@@ -11,7 +12,8 @@ const config = {
     accountGuid: 'dd015a29-8f73-4469-a5fa-ea91544dfcda',
     fromTimestampUtc,
     toTimestampUtc,
-    txTypes: ['Brokerage', 'Trade']
+    txTypes: ['Brokerage', 'Trade'],
+    includeTotals: 'false'
   },
   useDefaults: true,
   validation: {
@@ -19,7 +21,8 @@ const config = {
     fromTimestampUtc: ['isRequired', isTime({ before: toTimestampUtc })],
     toTimestampUtc: ['isRequired', isTime({ after: fromTimestampUtc })],
     pageIndex: ['isPositiveNumber'],
-    pageSize: [isPositiveNumber(5000)]
+    pageSize: [isPositiveNumber(5000)],
+    includeTotals: [isOneOf(['true', 'false'])]
   }
 }
 
