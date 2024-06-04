@@ -6,14 +6,13 @@ const isOneOf = require('../../../../src/validation/isOneOf')
 const fromTimestampUtc = '2014-08-01T08:00:00Z'
 const toTimestampUtc = '2016-08-01T08:00:00Z'
 
-const config = {
+const config1 = {
   handler: 'getTransactions',
   params: {
     accountGuid: 'dd015a29-8f73-4469-a5fa-ea91544dfcda',
     fromTimestampUtc,
     toTimestampUtc,
-    txTypes: ['Brokerage', 'Trade'],
-    includeTotals: 'false'
+    txTypes: ['Brokerage', 'Trade']
   },
   useDefaults: true,
   validation: {
@@ -26,4 +25,14 @@ const config = {
   }
 }
 
-doTest(config)
+doTest(config1)
+
+const config2 = {
+  ...config1,
+  params: {
+    ...config1.params,
+    includeTotals: 'false'
+  }
+}
+
+doTest(config2)
