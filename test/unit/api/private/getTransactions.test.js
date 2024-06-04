@@ -25,7 +25,7 @@ const config1 = {
   }
 }
 
-doTest(config1)
+doTest(config1) // test with missing includeTotals param
 
 const config2 = {
   ...config1,
