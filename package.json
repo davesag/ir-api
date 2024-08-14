@@ -54,7 +54,7 @@
   "devDependencies": {
     "@snyk/protect": "^1.981.0",
     "ajv": "^8.11.0",
-    "axios": "^1.6.8",
+    "axios": "^1.7.4",
     "chai": "^4.3.10",
     "chai-as-promised": "^7.1.1",
     "eslint": "^8.57.0",
