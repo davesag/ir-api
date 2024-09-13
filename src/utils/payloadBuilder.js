@@ -24,8 +24,8 @@ const payloadBuilder =
           elem === 'signature'
             ? acc
             : Array.isArray(data[elem])
-            ? [...acc, `${elem}=${data[elem].join(',')}`]
-            : [...acc, `${elem}=${data[elem]}`],
+              ? [...acc, `${elem}=${data[elem].join(',')}`]
+              : [...acc, `${elem}=${data[elem]}`],
         [url]
       )
       .join(',')
