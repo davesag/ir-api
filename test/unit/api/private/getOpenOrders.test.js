@@ -6,10 +6,8 @@ const config = {
   params: { primaryCurrencyCode: 'Eth', secondaryCurrencyCode: 'Aud' },
   useDefaults: true,
   validation: {
-    primaryCurrencyCode: ['isRequired'],
-    secondaryCurrencyCode: ['isRequired'],
     pageIndex: ['isPositiveNumber'],
-    pageSize: [isPositiveNumber(50)]
+    pageSize: [isPositiveNumber(100)]
   }
 }
 
