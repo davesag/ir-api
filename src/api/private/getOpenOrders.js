@@ -5,10 +5,8 @@ const { validateFields } = require('../../validation')
 const isPositiveNumber = require('../../validation/isPositiveNumber')
 
 const validation = {
-  primaryCurrencyCode: ['isRequired'],
-  secondaryCurrencyCode: ['isRequired'],
   pageIndex: ['isPositiveNumber'],
-  pageSize: [isPositiveNumber(50)]
+  pageSize: [isPositiveNumber(100)]
 }
 
 // https://www.independentreserve.com/products/api#GetOpenOrders
